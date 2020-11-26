@@ -499,4 +499,10 @@ Returns 1 if c is a printing character other than space (' ') and 0 otherwise.
 
 ## Pointer Access Operators 
 
+```
+dataType *pointerVariableName;
 
+ int *agePointer;
+int age = 58; 
+agePointer = &age;
+```
