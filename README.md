@@ -402,6 +402,10 @@ int sumFunction (int x, int y) // function declaration {
    int var = analogRead(pinNumber);     
 ```
 
+### analogWrite(PIN,Value ) function
+```
+ value => 0 to 255
+```
 ---
 
 ## SAMPLES
