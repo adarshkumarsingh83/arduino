@@ -46,8 +46,8 @@ int readInteger() {
   while (Serial.available() == 0) {
     ;
   }
-  String  input = Serial.readString();
-  return input.toInt();
+  int  input = Serial.parseInt();
+  return input;
 }
 
 void clearSerialBuffer() {
