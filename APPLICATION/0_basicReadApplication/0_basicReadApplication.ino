@@ -3,8 +3,8 @@ void setup() {
 }
 
 void loop() {
-   char inputChar = readByteData();
-   Serial.println(inputChar);
+   //char inputChar = readByteData();
+   //Serial.println(inputChar);
 
   String  inputString = readString();
   Serial.println(inputString);
@@ -54,6 +54,5 @@ void clearSerialBuffer() {
 
   while (Serial.available() > 0) {
     Serial.read();
-    Serial.flush();
   }
 }
