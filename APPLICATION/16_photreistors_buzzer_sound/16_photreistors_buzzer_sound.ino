@@ -1,7 +1,14 @@
 
 int readValuePin = A3;
-float voltage;
+float lightValue;
 int buzzerPin = 13;
+
+int delayTime = 0;
+int delayTime1 = 0;
+int delayTime2 = 10;
+int light1 = 0;
+int light2 = 750;
+
 void setup() {
   Serial.begin(9600);
   pinMode(buzzerPin, OUTPUT);
@@ -9,11 +16,22 @@ void setup() {
 
 }
 
+// formula to calculate angle for the servo moter based on light input value
+int calaculateDelay(int lightValue) {
+  float m  = (delayTime2 - delayTime1 ) / (light2 - light1);
+  int delayTime = m * ( lightValue - light1 ) + delayTime1;
+  Serial.println(delayTime);
+  return delayTime;
+}
+
 void loop() {
-  voltage = (9. / 550.) * analogRead(readValuePin) - (9.*200 / 550.) + 1.;
-  Serial.println(voltage);
+
+  lightValue = analogRead(readValuePin);
+  //delayTime = (9. / 550.) * lightValue - (9.*200 / 550.) + 1.;
+  delayTime = calaculateDelay(lightValue);
+  Serial.println(lightValue);
   digitalWrite(buzzerPin, HIGH);
-  delayMicroseconds(voltage);
+  delayMicroseconds(delayTime);
   digitalWrite(buzzerPin, LOW);
-  delayMicroseconds(voltage);
+  delayMicroseconds(delayTime);
 }
