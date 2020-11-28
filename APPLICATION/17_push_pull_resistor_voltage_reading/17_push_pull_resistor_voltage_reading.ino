@@ -20,4 +20,5 @@ void loop() {
     digitalWrite(redLedPin, LOW);
     digitalWrite(greenLedPin, HIGH);
   }
+  delay(100);
 }
