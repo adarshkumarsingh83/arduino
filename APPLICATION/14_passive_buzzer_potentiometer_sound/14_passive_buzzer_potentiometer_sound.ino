@@ -10,9 +10,8 @@ void setup() {
 }
 
 void loop() {
-  voltage = (9940. / 1023.) * analogRead(readValuePin)+60;
+  voltage = ((9940. / 1023.) * analogRead(readValuePin))+60;
   Serial.println(voltage);
-
   digitalWrite(buzzerPin, HIGH);
   delayMicroseconds(voltage);
   digitalWrite(buzzerPin, LOW);
