@@ -20,6 +20,7 @@ void loop() {
     digitalWrite(greenPin, HIGH);
     digitalWrite(redPin, LOW);
   } else {
+    
     digitalWrite(redPin, HIGH);
     digitalWrite(greenPin, LOW);
   }
