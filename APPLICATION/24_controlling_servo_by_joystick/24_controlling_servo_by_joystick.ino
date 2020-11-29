@@ -9,6 +9,7 @@ int xpinValue;
 int ypinValue;
 int spinValue;
 
+// constant for the angle calculation 
 float readValueMin = 0;
 float readValueMax = 1023;
 float angleValueMin = 0;
