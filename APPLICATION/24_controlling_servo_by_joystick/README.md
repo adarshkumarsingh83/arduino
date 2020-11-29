@@ -3,5 +3,5 @@
 ---
 
 two servo motor will be controlled by joystick \
-x axis will controll the bottton serve \ 
-y axis will controll the top servo motor 
+x axis will controll the bottton serve \
+ y axis will controll the top servo motor 
