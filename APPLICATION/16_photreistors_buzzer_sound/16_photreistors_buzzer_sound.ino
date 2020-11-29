@@ -4,10 +4,10 @@ float lightValue;
 int buzzerPin = 13;
 
 int delayTime = 0;
-int delayTime1 = 0;
-int delayTime2 = 10;
-int light1 = 0;
-int light2 = 750;
+float delayTime1 = 0;
+float delayTime2 = 10;
+float light1 = 0;
+float light2 = 750;
 
 void setup() {
   Serial.begin(9600);

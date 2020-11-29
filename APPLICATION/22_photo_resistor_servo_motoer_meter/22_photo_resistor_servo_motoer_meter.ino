@@ -25,8 +25,6 @@ void setup() {
   pinMode(readPin, INPUT);
   pinMode(servoPin, OUTPUT);
   myServoMoter.attach(servoPin);
-
-  calaculateAngle(145);
 }
 
 void loop() {
