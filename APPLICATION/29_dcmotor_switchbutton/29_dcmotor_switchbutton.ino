@@ -28,20 +28,18 @@ void setup() {
 
 void loop() {
 
-  delay(1000);
-
+  delay(100);
   state = calculateDirection();
+  dcMotorSpeed = calculateSpeed();
 
-  Serial.println(state);
-  Serial.println(dcMotorSpeed);
   switch (state) {
-    case 0:  stopMoter();                  //motor stop
+    case 0:  stopMoter(0);                  //motor stop
       break;
     case 1:  forwardMoter(dcMotorSpeed);   //rotate forward
       break;
     case 2:  backwardMoter(dcMotorSpeed);  //rotate backward
       break;
-    default: stopMoter();                  //motor stop
+    default: stopMoter(0);                  //motor stop
       break;
   }
 
@@ -52,61 +50,57 @@ int calculateDirection() {
 
   buttonValue = digitalRead(forwardButtonPin);
   if (buttonValue == LOW) {
-    stopMoter();
+    stopMoter(0);
     state = 1;
-    dcMotorSpeed = 148;
     buttonValue = HIGH;
   }
 
   buttonValue = digitalRead(backwardButtonPin);
   if (buttonValue == LOW) {
-    stopMoter();
+    stopMoter(0);
     state = 2;
-    dcMotorSpeed = 148;
     buttonValue = HIGH;
   }
 
   buttonValue = digitalRead(stopButtonPin);
   if (buttonValue == LOW) {
-    stopMoter();
+    stopMoter(0);
     state = 0;
-    dcMotorSpeed = 128;
+    dcMotorSpeed = minMoterSpeed;
     buttonValue = HIGH;
   }
   return state;
 }
 
 
-int calculateSpeed(int xpinValue) {
-
+int calculateSpeed() {
 
   buttonValue = digitalRead(increseSpeeddButtonPin);
-
   if (buttonValue == LOW) {
-    if (dcMotorSpeed <= maxMoterSpeed) {
-      dcMotorSpeed = + 10;;
+    if (dcMotorSpeed < maxMoterSpeed) {
+      dcMotorSpeed ++;
     }
     buttonValue = HIGH;
   }
 
   buttonValue = digitalRead(decreseSpeeddButtonPin);
   if (buttonValue == LOW) {
-
-    if (dcMotorSpeed >= minMoterSpeed) {
-      dcMotorSpeed =- 10;;
+    if (dcMotorSpeed > minMoterSpeed) {
+      dcMotorSpeed --;
     }
     buttonValue = HIGH;
   }
-
   return dcMotorSpeed;
 }
 
 
 //The function to drive motor rotate clockwise
-void stopMoter() {
+void stopMoter(int dcMotorSpeed) {
   state = 0 ;
-  analogWrite(motorBackward, 0); //set the speed of motor
-  analogWrite(motorForward, 0); //set the speed of motor
+  Serial.println(state);
+  Serial.println(dcMotorSpeed);
+  analogWrite(motorBackward, dcMotorSpeed); //set the speed of motor
+  analogWrite(motorForward, dcMotorSpeed); //set the speed of motor
 }
 
 //The function to drive motor rotate forward
