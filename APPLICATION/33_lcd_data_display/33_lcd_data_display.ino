@@ -12,7 +12,7 @@ const LiquidCrystal lcd(lcdRSPin, lcdENPin, lcdD4Pin, lcdD5Pin, lcdD6Pin, lcdD7P
 
 void setup() {
   Serial.begin(9600);
-  //lcd 2row 16collumn defined
+  //lcd  16collumn 2row defined
   lcd.begin(16, 2);
 }
 
