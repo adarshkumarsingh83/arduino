@@ -30,7 +30,7 @@ void rightShitOperation(byte counter ) {
 }
 
 void leftShitOperation(byte counter) {
-  if (counter <= 255) {
+  if (counter < 255) {
     Serial.println(counter, BIN);
     digitalWrite(latchPin, LOW);
     shiftOut(dataPin, clockPin, LSBFIRST, counter);
@@ -75,7 +75,7 @@ void loop() {
 
   //rightShitOperation(0B11111111);
   
-  //leftShitOperation(0b00000001);
+ // leftShitOperation(0b00000001);
 
   circularShift(0B11111110);
 
