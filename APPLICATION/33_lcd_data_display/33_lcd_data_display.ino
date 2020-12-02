@@ -45,7 +45,7 @@ void displayData(String dataValue, int spaceIndex, boolean forward) {
   } else {
     spaceIndex --;
   }
- 
+
   if (dataValue.length() < 14) {
     for (int i = 0; i < dataValue.length(); i++) {
       if (i == spaceIndex) {
