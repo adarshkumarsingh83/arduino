@@ -12,9 +12,8 @@
  ### Download the latest zip "DHT_sensor_library-X.xx"
  ### to install the library to the aruino 
  	- open ide file -> prefrences -> sketchbook location 
- 	  	- /
- 	- get inside the lication then find "libraries" dir 
- 	- copy and pate the unzip file of the library which is downloaded earlier 
+ 	- get inside the location then find "libraries" dir 
+ 	- copy and paste the unzip file of the library which is downloaded earlier 
  	- for my devie i hav to copy the file present in our projct dir 
 
 ### or 
