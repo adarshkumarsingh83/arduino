@@ -44,10 +44,16 @@ void loop() {
 
 }
 
+/*
+                                             5280ft         12inch         1sec         1 sec
+   inchesPerMiliSecound = SOUND_SPEED * ------------- * ------------ * ----------- * --------------   *  ping_travell_time_to_travell
+                                             1 mile          1 ft        3600 sec      1000000 micro sec
+*/
 float calculateDistanceInchesPerMicroSecound(float pingTrvaelTime) {
-  float inchesPerMiliSecound = SOUND_SPEED * (oneMile / 1 ) * ( oneFoot / 1 ) * ( 1 / oneHour ) * ( 1 / oneSecound);
-  return inchesPerMiliSecound * pingTrvaelTime;
+  float inchesPerMicroSecound = pingTrvaelTime * SOUND_SPEED * (oneMile / 1 ) * ( oneFoot / 1 ) * ( 1 / oneHour ) * ( 1 / oneSecound);
+  return inchesPerMicroSecound / 2;
 }
+
 
 //calculate speed in inches per micro secound
 float velocityInchesPerMicroSecound() {
@@ -56,8 +62,17 @@ float velocityInchesPerMicroSecound() {
 }
 
 //calculate speed in mile per hour
+/*
+                                             5280ft         12inch         1sec         1 sec
+   inchesPerMiliSecound = SOUND_SPEED * ------------- * ------------ * ----------- * --------------     *  ping_travell_time_to_travell
+                                             1 mile          1 ft        3600 sec      1000000 micro sec
+
+
+
+   milePerHOurs = inchesPerMicroSecound *  ----------- * ------------- * -------------- * ----------------
+
+
+*/
 float  velocityMilesPerHour(float pingTrvaelTime) {
-  float inchesPerMiliSecound = (SOUND_SPEED / oneHour) * (oneMile / 1 ) * ( oneFoot / 1 ) * (  1 / oneHour ) * ( 1 / oneSecound);
-  inchesPerMicroSecound = inchesPerMiliSecound * pingTrvaelTime;
-  return inchesPerMicroSecound * (1 / oneFoot) * (1 / oneMile) * (oneSecound / 1) * (oneHour / 1);
+  return calculateDistanceInchesPerMicroSecound(pingTrvaelTime) * (1 / oneFoot) * (1 / oneMile) * (oneSecound / 1) * (oneHour / 1);
 }
