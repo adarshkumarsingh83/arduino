@@ -68,9 +68,9 @@ float velocityInchesPerMicroSecound() {
                                              1 mile          1 ft        3600 sec      1000000 micro sec
 
 
-
-   milePerHOurs = inchesPerMicroSecound *  ----------- * ------------- * -------------- * ----------------
-
+                                             1 foot         1 mile         1000000micro sec       3600 sec 
+   milePerHOurs = inchesPerMicroSecound *  ----------- * ------------- * --------------       * ----------------
+                                              12 inch        5280foot        1 micro sec            1 hour 
 
 */
 float  velocityMilesPerHour(float pingTrvaelTime) {
