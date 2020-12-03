@@ -51,7 +51,7 @@ void loop() {
 */
 float calculateDistanceInchesPerMicroSecound(float pingTrvaelTime) {
   float inchesPerMicroSecound = pingTrvaelTime * SOUND_SPEED * (oneMile / 1 ) * ( oneFoot / 1 ) * ( 1 / oneHour ) * ( 1 / oneSecound);
-  return inchesPerMicroSecound / 2;
+  return inchesPerMicroSecound / 2; // becoz device measure the roundtrip from device -> target object -> to device 
 }
 
 
@@ -71,7 +71,12 @@ float velocityInchesPerMicroSecound() {
                                              1 foot         1 mile         1000000micro sec       3600 sec 
    milePerHOurs = inchesPerMicroSecound *  ----------- * ------------- * --------------       * ----------------
                                               12 inch        5280foot        1 micro sec            1 hour 
-
+                                              
+   distance = velocity * time 
+   
+               distance 
+   velocity = -----------------
+               time 
 */
 float  velocityMilesPerHour(float pingTrvaelTime) {
   return calculateDistanceInchesPerMicroSecound(pingTrvaelTime) * (1 / oneFoot) * (1 / oneMile) * (oneSecound / 1) * (oneHour / 1);
