@@ -1,16 +1,137 @@
+/*
+   NOTE
+   1. SINGNAL CODE SEND FROM ONE BLOCK TO OTHER BLOCK
+      400 FOR RED, 600 FOR YELLOW, 1000 FOR GREEN
+   2. CURRENT BLOCK IS ALWAYS POINT OF REFERENCE FOR THE PROCESSING
+   3. SIGNAL FROM PREVIOUS BLOCK FOR FORWARD SIGNAL
+      SIGNAL FROM NEXT BLOCK FOR BACKWARD SIGNAL
 
-const int FIRST_SENSOR = A0; // CURRENT BLOCK SENSOR 1 ON PIN AO
-const int SECOUND_SENSOR = A1; // CURRENT BLOCK SENSOR 2 ON PIN A1
 
-//FIRST LIGHT BLOCK SIGNAL
-const int FIRST_GREEN = 2;
-const int FIRST_YELLOW = 3;
-const int FIRST_RED = 4;
+   1 CASE FORWARD_GREEN_BACKWARD_GREEN
+      SIGNAL TO PREVIOUS BLOCK 1000
+      SIGNAL TO NEXT BLOCK 1000
+      SIGNAL FROM PREVIOUS BLOCK 1000
+      SINGAL FROM NEXT BLOCK 1000
 
-//SECOUND LIGHT BLOCK SIGNAL
-const int SECOUND_GREEN = 5;
-const int SECOUND_YELLOW = 6;
-const int SECOUND_RED = 7;
+            EMPTY                              EMPTY                                EMPTY
+     G                                    G                                    G            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              G                                    G                                   G
+
+    2 CASE
+    FORWARD_RED_AND_BACKWARD_GREEN
+    SIGNAL FROM PREVIOUS BLOCK 400
+    SINGAL TO NEXT BLOCK 600
+    SIGNAL FROM PREVIOUS BLOCK 1000
+    SIGNAL FROM NEXT BLOCK 1000
+
+          NON EMPTY                              EMPTY                                EMMPTY
+     G                                    R                                    Y            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              G                                    G                                   G
+
+    3 CASE
+      FORWARD_GREEN_AND_BACKWARD_GREEN_1
+      SIGNAL TO PREVIOUS BLOCK 400
+      SIGNAL TO NEXT BLOCK 400
+      SIGNAL FROM PREVIOUS BLOCK 1000
+      SIGNAL FROM NEXT BLOCK 1000
+
+          EMPTY                                 NON EMPTY                            EMPTY
+     G                                    G                                    R           <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              R                                    G                                   G
+
+    4 CASE
+     FORWRD_GREEN_AND_BACKWARD_RED
+     SIGNAL TO PREVIOUS BLOCK 600
+     SIGNAL TO NEXT BLOCK 1000
+     SIGNAL FROM PREVIOUS BLOCK 1000
+     SIGNAL FROM NEXT BLOCK 400
+
+          EMPTY                                  EMPTY                              NON EMPTY
+     G                                    G                                    G            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              Y                                    R                                   G
+
+    5 CASE
+      FORWARD_RED_AND_BACKWARD_RED
+      SIGNAL TO PREVIOUS BLOCK 600
+      SIGNAL TO NEXT BLOCK     600
+      SIGNAL FROM PREVIOUS BLOCK 400
+      SIGNAL FROM NEXT BLOCK  400
+
+         NON EMPTY                              EMPTY                                NON EMPTY
+     G                                    R                                    Y            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              Y                                    R                                    G
+
+    6 CASE
+     FORWARD_RED_AND_BACKWARD_GREEN_1
+      SIGNAL TO PREVIOUS BLOCK 400
+      SIGNAL TO NEXT BLOCK 400
+      SIGNAL FROM PREVIOUS BLOCK 400
+      SIGNAL FROM NEXT BLOCK 1000
+
+         NON EMPTY                              NON EMPTY                           EMPTY
+     G                                    R                                    R            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              R                                    G                                    G
+
+    7 CASE
+     FORWARD_GREEN_AND_BACKWARD_RED_1
+      SIGNAL TO PREVIOUS BLOCK 400
+      SIGNAL TO NEXT BLOCK 400
+      SIGNAL FROM PREVIOUS BLOCK 1000
+      SIGNAL FROM NEXT BLOCK 400
+
+          EMPTY                                 NON EMPTY                           NON EMPTY
+     G                                     G                                    R            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              R                                    R                                    G
+
+    8 CASE
+     FORWARD_RED_AND_BACKWARD_RED_1
+      SIGNAL TO PREVIOUS BLOCK 400
+      SIGNAL TO NEXT BLOCK 400
+      SIGNAL FROM PREVIOUS BLOCK 400
+      SIGNAL FROM NEXT BLOCK 400
+
+           NON EMPTY                           NON EMPTY                             NON EMPTY
+     G                                     R                                    R            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              R                                    R                                    G
+*/
+
+
+const int FORWARD_SENSOR = A0; // CURRENT BLOCK FORWRD SENSOR 1 ON PIN AO
+const int BACKWARD_SENSOR = A1; // CURRENT BLOCK BACKWARD SENSOR 2 ON PIN A1
+
+//FIRST/FORWARD LIGHT BLOCK SIGNAL
+const int FORWARD_GREEN = 2;
+const int FORWARD_YELLOW = 3;
+const int FORWARD_RED = 4;
+
+//SECOUND/BACKWARD LIGHT BLOCK SIGNAL
+const int BACKWARD_GREEN = 5;
+const int BACKWARD_YELLOW = 6;
+const int BACKWARD_RED = 7;
 
 //PUBLISHING CHANNELS FOR OTHER BLOCKS
 const int PREVIOUS_BLOCK_PUBLISHING_CHANNEL = 8; //PUBLISHING SINGAL TO PREVIOUS BLOCK SYAING CURRENT BLOCK IS OCCUPIED
@@ -21,29 +142,48 @@ const int PREVIOUS_BLOCK_SUBSCRIPTION_CHANNEL = A2; //LISTENING SINGAL FROM PREV
 const int NEXT_BLOCK_SUBSCRIPTION_CHANNEL = A3; //LISTENING SINGAL FROM NEXT BLOCK SYAING NEXT BLOCK IS OCCUPIED
 
 enum SIGNAL_STATES {
-  SATE_FIRST_GREEN_SECOUND_GREEN,
-  SATE_FIRST_GREEN_SECOUND_YELLOW,
-  SATE_FIRST_YELLOW_SECOUND_GREEN,
-  SATE_FIRST_YELLOW_SECOUND_YELLOW,
-  SATE_FIRST_RED_SECOUND_RED,
+
+  // CASE 1  WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
+  STATE_FOWARD_GREEN_BACKWARD_GREEN,
+
+  // CASE 2 WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
+  STATE_FOWARD_RED_BACKWARD_GREEN,
+
+  // CASE 3 WHEN PREVIOUS AND NEXT BLOCK IS EMPTY AND CURRENT BLOCK IS NOT EMPTY
+  FORWARD_GREEN_AND_BACKWARD_GREEN_1,
+
+  // CASE 4 WHEN PREVIOUS AND CURRENT BLOCK EMPTY AND NEXT BLOCK IS NOT EMPTY
+  FORWRD_GREEN_AND_BACKWARD_RED,
+
+  // CASE 5 WHEN CURRENT BLOCK IS EMPTY AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
+  FORWARD_RED_AND_BACKWARD_RED,
+
+  // CASE 6 WHEN PREVIOUS AND CURRENT IS EMPTY AND NEXT BLOCK IS NOT EMPTY 
+  FORWARD_RED_AND_BACKWARD_GREEN_1,
+
+  // CASE 7 WHEN PREVIOUS IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY 
+  FORWARD_GREEN_AND_BACKWARD_RED_1,
+
+  // CASE 8 WHEN PREVUIOS CURRENT AND NEXT IS NOT EMPTY 
+  FORWARD_RED_AND_BACKWARD_RED_1
 };
 
 
-SIGNAL_STATES singnalState = SATE_FIRST_GREEN_SECOUND_GREEN;
+SIGNAL_STATES singnalState = STATE_FOWARD_GREEN_BACKWARD_GREEN;
 
-int sensorFirst;
-int sensorSecound;
+int forwardSensor;
+int backwardSensor;
 int previousBlockOccupancySingal;
 int nextBlockOccupancySingal;
 
 
-
+const int DELAY_TIME = 500;
 void setup() {
   Serial.begin(9600);
 
   // SENSORS FOR BLOCK SINGAL INPUTS
-  pinMode(FIRST_SENSOR, INPUT);
-  pinMode(SECOUND_SENSOR, INPUT);
+  pinMode(FORWARD_SENSOR, INPUT);
+  pinMode(BACKWARD_SENSOR, INPUT);
 
   // PREVIOUS AND NEXT BLOCKS SINGAL INPUTS SUBSCIPRITONS CHANNELS
   pinMode(PREVIOUS_BLOCK_SUBSCRIPTION_CHANNEL, INPUT);
@@ -53,61 +193,72 @@ void setup() {
   pinMode(PREVIOUS_BLOCK_PUBLISHING_CHANNEL, OUTPUT);
   pinMode(NEXT_BLOCK_PUBLISHING_CHANNEL, OUTPUT);
 
-  // CURENT BLOCK FIRST SINGAL LIGHT
-  pinMode(FIRST_GREEN, OUTPUT);
-  pinMode(FIRST_YELLOW, OUTPUT);
-  pinMode(FIRST_RED, OUTPUT);
+  // CURENT BLOCK FORWARD/FIRST SINGAL LIGHT
+  pinMode(FORWARD_GREEN, OUTPUT);
+  pinMode(FORWARD_YELLOW, OUTPUT);
+  pinMode(FORWARD_RED, OUTPUT);
 
-  // CURENT BLOCK SECOUND  SINGAL LIGHT
-  pinMode(SECOUND_GREEN, OUTPUT);
-  pinMode(SECOUND_YELLOW, OUTPUT);
-  pinMode(SECOUND_RED, OUTPUT);
+  // CURENT BLOCK BACKWARD/SECOUND SINGAL LIGHT
+  pinMode(BACKWARD_GREEN, OUTPUT);
+  pinMode(BACKWARD_YELLOW, OUTPUT);
+  pinMode(BACKWARD_RED, OUTPUT);
 }
 
 void loop() {
 
 
-  sensorFirst = analogRead(FIRST_SENSOR);
-  sensorSecound = analogRead(SECOUND_SENSOR);
+  forwardSensor = analogRead(FORWARD_SENSOR);
+  backwardSensor = analogRead(BACKWARD_SENSOR);
   previousBlockOccupancySingal = analogRead(PREVIOUS_BLOCK_SUBSCRIPTION_CHANNEL);
   nextBlockOccupancySingal = analogRead(NEXT_BLOCK_SUBSCRIPTION_CHANNEL);
 
-  Serial.println(sensorFirst);
-  Serial.println(sensorSecound);
+  Serial.println(forwardSensor);
+  Serial.println(backwardSensor);
   Serial.println(previousBlockOccupancySingal);
   Serial.println(nextBlockOccupancySingal);
 
   switch (singnalState) {
-    case SATE_FIRST_GREEN_SECOUND_GREEN:
-      break;
-    case SATE_FIRST_GREEN_SECOUND_YELLOW:
-      break;
-    case SATE_FIRST_YELLOW_SECOUND_GREEN:
-      break;
-    case SATE_FIRST_YELLOW_SECOUND_YELLOW:
-      break;
-    case SATE_FIRST_RED_SECOUND_RED:
+    case STATE_FOWARD_GREEN_BACKWARD_GREEN:
       break;
   }
 }
 
-void firstGreenAndSecoundGreenSignal() {
+
+// WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
+// WHEN PREVIOUS AND NEXT BLOCK EMPTY AND CURRENT BLOCK IS NOT EMPTY
+// STATE_FOWARD_GREEN_BACKWARD_GREEN,
+void forwardGreenAndBackwardGreenSignal() {
 
 }
 
-void firstGreenAndSecoundYellowSignal() {
+// WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
+// STATE_FOWARD_RED_BACKWARD_GREEN,
+void forwardRedAndBackwardGreenSignal() {
 
 }
 
-void firstYellowAndSecoundGreenSignal() {
+// WHEN PREVIOUS AND CURRENT BLOCK EMPTY AND NEXT BLOCK IS NOT EMPTY
+// STATE_FORWARD_GREEN_BACKWARD_RED,
+void forwarddGreenAndBackwardRedSignal() {
 
 }
 
-void firstYellowAndSecoundYellowSignal() {
+// WHEN CURRENT BLOCK IS EMPTY AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
+// WHEN CURRENT BLOCK AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
+// STATE_FORWARD_RED_BACKWARD_RED,
+void forwardRedAndBackwardRedSignal() {
 
 }
 
-void firstRedAndSecoundRedSignal() {
+// WHEN PREVIOUS BLOCK IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY
+// STATE_FORWARD_GREEN_BACKWARD_RED
+void forwardGreenAndBackwardRedSignal() {
+
+}
+
+// WHEN NEXT BLOCK IS EMPTY AND PREVIOUS AND CURRENT BLOCK IS NOT EMPTY
+// STATE_FORWARD_RED_BACKWARD_GREEN
+void forwardRedAndBackwardGreenSignal() {
 
 }
 
@@ -116,30 +267,32 @@ void firstRedAndSecoundRedSignal() {
 
 
 
-// SETTING UP THE VALUES FOR CURRRENT BLOCK SIGNALS FIRST
-void setSignalsFirst( int firstGreen,
-                      int firstYellow,
-                      int firstRed) {
+
+
+// SETTING UP THE VALUES FOR CURRRENT BLOCK FORWARD SIGNALS FIRST
+void setSignalsForward( int forwardGreen,
+                        int forwardYellow,
+                        int fowardRed) {
   //LOW FOR ON HIGHT FOR OFF
-  digitalWrite(FIRST_GREEN, firstGreen);
-  digitalWrite(FIRST_YELLOW, firstYellow);
-  digitalWrite(FIRST_RED, firstRed);
+  digitalWrite(FORWARD_GREEN, forwardGreen);
+  digitalWrite(FORWARD_YELLOW, forwardYellow);
+  digitalWrite(FORWARD_RED, fowardRed);
 }
 
-// SETTING UP THE VALUES FOR CURRRENT BLOCK SIGNALS SECOUND
-void setSignalsSecound( int secoundGreen,
-                        int secoundYellow,
-                        int secoundRed) {
+// SETTING UP THE VALUES FOR CURRRENT BLOCK BACKWARD SIGNALS SECOUND
+void setSignalsBackward( int backwardGreen,
+                         int backwardYellow,
+                         int backwardRed) {
   //LOW FOR ON HIGHT FOR OFF
-  digitalWrite(SECOUND_GREEN, secoundGreen);
-  digitalWrite(SECOUND_YELLOW, secoundYellow);
-  digitalWrite(SECOUND_RED, secoundRed);
+  digitalWrite(BACKWARD_GREEN, backwardGreen);
+  digitalWrite(BACKWARD_YELLOW, backwardYellow);
+  digitalWrite(BACKWARD_RED, backwardRed);
 }
 
 
 // SETTING UP THE VALUES FOR CURRRENT BLOCK OCCUPANCY PUBLISHING TO CHANNALS FOR PREVIOUS AND NEXT BLOCK
 void setPublishingChannelForAdjacentBlocks(int previousBlock,
-                           int nextBlock) {
+    int nextBlock) {
   analogWrite(CURRENT_BLOCK_OCCUPANCY_PUBLISHING_TO_PREVIOUS_BLOCK, previousBlock);
   analogWrite(CURRENT_BLOCK_OCCUPANCY_PUBLISHING_TO_NEXT_BLOCK, nextBlock);
 }
