@@ -144,10 +144,10 @@ const int NEXT_BLOCK_SUBSCRIPTION_CHANNEL = A3; //LISTENING SINGAL FROM NEXT BLO
 enum SIGNAL_STATES {
 
   // CASE 1  WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
-  STATE_FOWARD_GREEN_BACKWARD_GREEN,
+  FOWARD_GREEN_BACKWARD_GREEN,
 
   // CASE 2 WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
-  STATE_FOWARD_RED_BACKWARD_GREEN,
+  FOWARD_RED_BACKWARD_GREEN,
 
   // CASE 3 WHEN PREVIOUS AND NEXT BLOCK IS EMPTY AND CURRENT BLOCK IS NOT EMPTY
   FORWARD_GREEN_AND_BACKWARD_GREEN_1,
@@ -158,18 +158,18 @@ enum SIGNAL_STATES {
   // CASE 5 WHEN CURRENT BLOCK IS EMPTY AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
   FORWARD_RED_AND_BACKWARD_RED,
 
-  // CASE 6 WHEN PREVIOUS AND CURRENT IS EMPTY AND NEXT BLOCK IS NOT EMPTY 
+  // CASE 6 WHEN PREVIOUS AND CURRENT IS EMPTY AND NEXT BLOCK IS NOT EMPTY
   FORWARD_RED_AND_BACKWARD_GREEN_1,
 
-  // CASE 7 WHEN PREVIOUS IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY 
+  // CASE 7 WHEN PREVIOUS IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY
   FORWARD_GREEN_AND_BACKWARD_RED_1,
 
-  // CASE 8 WHEN PREVUIOS CURRENT AND NEXT IS NOT EMPTY 
+  // CASE 8 WHEN PREVUIOS CURRENT AND NEXT IS NOT EMPTY
   FORWARD_RED_AND_BACKWARD_RED_1
 };
 
 
-SIGNAL_STATES singnalState = STATE_FOWARD_GREEN_BACKWARD_GREEN;
+SIGNAL_STATES singnalState = FOWARD_GREEN_BACKWARD_GREEN;
 
 int forwardSensor;
 int backwardSensor;
@@ -218,57 +218,201 @@ void loop() {
   Serial.println(nextBlockOccupancySingal);
 
   switch (singnalState) {
-    case STATE_FOWARD_GREEN_BACKWARD_GREEN:
+
+    // CASE 1  WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
+    case FOWARD_GREEN_BACKWARD_GREEN:
+      break;
+      
+    // CASE 2 WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
+    case FOWARD_RED_BACKWARD_GREEN:
+      break;
+
+    // CASE 3 WHEN PREVIOUS AND NEXT BLOCK IS EMPTY AND CURRENT BLOCK IS NOT EMPTY
+    case FORWARD_GREEN_AND_BACKWARD_GREEN_1:
+      break;
+
+    // CASE 4 WHEN PREVIOUS AND CURRENT BLOCK EMPTY AND NEXT BLOCK IS NOT EMPTY
+    case FORWRD_GREEN_AND_BACKWARD_RED:
+      break;
+
+    // CASE 5 WHEN CURRENT BLOCK IS EMPTY AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
+    case FORWARD_RED_AND_BACKWARD_RED:
+      break;
+      
+    // CASE 6 WHEN PREVIOUS AND CURRENT IS EMPTY AND NEXT BLOCK IS NOT EMPTY
+    case FORWARD_RED_AND_BACKWARD_GREEN_1:
+      break;
+
+    // CASE 7 WHEN PREVIOUS IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY
+    case FORWARD_GREEN_AND_BACKWARD_RED_1:
+      break;
+
+    // CASE 8 WHEN PREVUIOS CURRENT AND NEXT IS NOT EMPTY
+    case FORWARD_RED_AND_BACKWARD_RED_1:
       break;
   }
 }
 
 
 // WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
-// WHEN PREVIOUS AND NEXT BLOCK EMPTY AND CURRENT BLOCK IS NOT EMPTY
-// STATE_FOWARD_GREEN_BACKWARD_GREEN,
+/*
+   1 CASE
+      FORWARD_GREEN_BACKWARD_GREEN
+      SIGNAL TO PREVIOUS BLOCK 1000
+      SIGNAL TO NEXT BLOCK 1000
+      SIGNAL FROM PREVIOUS BLOCK 1000
+      SINGAL FROM NEXT BLOCK 1000
+            EMPTY                              EMPTY                                EMPTY
+     G                                    G                                    G            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              G                                    G                                   G
+*/
 void forwardGreenAndBackwardGreenSignal() {
 
 }
 
 // WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
-// STATE_FOWARD_RED_BACKWARD_GREEN,
+/*
+  2 CASE
+    FORWARD_RED_AND_BACKWARD_GREEN
+    SIGNAL FROM PREVIOUS BLOCK 400
+    SINGAL TO NEXT BLOCK 600
+    SIGNAL FROM PREVIOUS BLOCK 1000
+    SIGNAL FROM NEXT BLOCK 1000
+          NON EMPTY                              EMPTY                                EMMPTY
+     G                                    R                                    Y            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              G                                    G                                   G
+*/
 void forwardRedAndBackwardGreenSignal() {
 
 }
 
-// WHEN PREVIOUS AND CURRENT BLOCK EMPTY AND NEXT BLOCK IS NOT EMPTY
-// STATE_FORWARD_GREEN_BACKWARD_RED,
-void forwarddGreenAndBackwardRedSignal() {
+
+// WHEN PREVIOUS AND NEXT BLOCK IS EMPTY AND CURRENT BLOCK IS NOT EMPTY
+/*
+  3 CASE
+      FORWARD_GREEN_AND_BACKWARD_GREEN_1
+      SIGNAL TO PREVIOUS BLOCK 400
+      SIGNAL TO NEXT BLOCK 400
+      SIGNAL FROM PREVIOUS BLOCK 1000
+      SIGNAL FROM NEXT BLOCK 1000
+          EMPTY                                 NON EMPTY                            EMPTY
+     G                                    G                                    R           <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              R                                    G                                   G
+*/
+void forwardRedAndBackwardGreen1Signal() {
+
+}
+
+
+// WHEN PREVIOUS AND CURRENT BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY
+/*
+  4 CASE
+     FORWRD_GREEN_AND_BACKWARD_RED
+     SIGNAL TO PREVIOUS BLOCK 600
+     SIGNAL TO NEXT BLOCK 1000
+     SIGNAL FROM PREVIOUS BLOCK 1000
+     SIGNAL FROM NEXT BLOCK 400
+          EMPTY                                  EMPTY                              NON EMPTY
+     G                                    G                                    G            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              Y                                    R                                   G
+*/
+void forwardGreenAndBackwardRed() {
 
 }
 
 // WHEN CURRENT BLOCK IS EMPTY AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
-// WHEN CURRENT BLOCK AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
-// STATE_FORWARD_RED_BACKWARD_RED,
-void forwardRedAndBackwardRedSignal() {
+/*
+  5 CASE
+      FORWARD_RED_AND_BACKWARD_RED
+      SIGNAL TO PREVIOUS BLOCK 600
+      SIGNAL TO NEXT BLOCK     600
+      SIGNAL FROM PREVIOUS BLOCK 400
+      SIGNAL FROM NEXT BLOCK  400
+         NON EMPTY                              EMPTY                                NON EMPTY
+     G                                    R                                    Y            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              Y                                    R                                    G
+*/
+void forwardRedAndBackwardRed() {
 
 }
 
-// WHEN PREVIOUS BLOCK IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY
-// STATE_FORWARD_GREEN_BACKWARD_RED
-void forwardGreenAndBackwardRedSignal() {
+
+// WHEN NEXT BLOCK IS EMPTY AND PREVUIOS AND CURRENT BLOCK IS NOT EMPTY
+/*
+  6 CASE
+     FORWARD_RED_AND_BACKWARD_GREEN_1
+      SIGNAL TO PREVIOUS BLOCK 400
+      SIGNAL TO NEXT BLOCK 400
+      SIGNAL FROM PREVIOUS BLOCK 400
+      SIGNAL FROM NEXT BLOCK 1000
+         NON EMPTY                              NON EMPTY                           EMPTY
+     G                                    R                                    R            <------
+     |------------------|                 |------------------|                 |------------------|
+     | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+     |------------------|                 |------------------|                 |------------------|
+     ---->              R                                    G                                    G
+*/
+void forwardRedAndBackwardGreen1() {
 
 }
 
-// WHEN NEXT BLOCK IS EMPTY AND PREVIOUS AND CURRENT BLOCK IS NOT EMPTY
-// STATE_FORWARD_RED_BACKWARD_GREEN
-void forwardRedAndBackwardGreenSignal() {
+// WHEN PREVUIOS BLOCK IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY
+/*
+  7 CASE
+    FORWARD_GREEN_AND_BACKWARD_RED_1
+     SIGNAL TO PREVIOUS BLOCK 400
+     SIGNAL TO NEXT BLOCK 400
+     SIGNAL FROM PREVIOUS BLOCK 1000
+     SIGNAL FROM NEXT BLOCK 400
+         EMPTY                                 NON EMPTY                           NON EMPTY
+    G                                     G                                    R            <------
+    |------------------|                 |------------------|                 |------------------|
+    | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+    |------------------|                 |------------------|                 |------------------|
+    ---->              R                                    R                                    G
+*/
+void forwardGreenAndBackwardRed1() {
+
+}
+
+// WHEN PREVUIOS CURRENT AND NEXT BLOCK ALL ARE NOT EMPTY
+/*
+  8 CASE
+    FORWARD_RED_AND_BACKWARD_RED_1
+     SIGNAL TO PREVIOUS BLOCK 400
+     SIGNAL TO NEXT BLOCK 400
+     SIGNAL FROM PREVIOUS BLOCK 400
+     SIGNAL FROM NEXT BLOCK 400
+          NON EMPTY                           NON EMPTY                             NON EMPTY
+    G                                     R                                    R            <------
+    |------------------|                 |------------------|                 |------------------|
+    | PREVIOUS BLOCK   |                 | CURRENT BLOCK    |                 | NEXT BLOCK       |
+    |------------------|                 |------------------|                 |------------------|
+    ---->              R                                    R                                    G
+*/
+void forwardRedAndBackwardRed1() {
 
 }
 
 
-
-
-
-
-
-
+/*----------------------------------------------------------------------------------------------------------------------*/
+//        UTILITY METHOD FOR SETTING UP THE VLAUES FOR THE LED LIGHTS AND OUPUTPINS FOR OTHER BLOCKS
+/*----------------------------------------------------------------------------------------------------------------------*/
 // SETTING UP THE VALUES FOR CURRRENT BLOCK FORWARD SIGNALS FIRST
 void setSignalsForward( int forwardGreen,
                         int forwardYellow,
@@ -291,8 +435,10 @@ void setSignalsBackward( int backwardGreen,
 
 
 // SETTING UP THE VALUES FOR CURRRENT BLOCK OCCUPANCY PUBLISHING TO CHANNALS FOR PREVIOUS AND NEXT BLOCK
-void setPublishingChannelForAdjacentBlocks(int previousBlock,
-    int nextBlock) {
-  analogWrite(CURRENT_BLOCK_OCCUPANCY_PUBLISHING_TO_PREVIOUS_BLOCK, previousBlock);
-  analogWrite(CURRENT_BLOCK_OCCUPANCY_PUBLISHING_TO_NEXT_BLOCK, nextBlock);
+void setPublishingChannelForAdjacentBlocks(int previousBlockPublishingChannel,
+    int nextBlockPublishingChannel) {
+  analogWrite(PREVIOUS_BLOCK_PUBLISHING_CHANNEL, previousBlockPublishingChannel);
+  analogWrite(NEXT_BLOCK_PUBLISHING_CHANNEL, nextBlockPublishingChannel);
 }
+
+/*----------------------------------------------------------------------------------------------------------------------*/
