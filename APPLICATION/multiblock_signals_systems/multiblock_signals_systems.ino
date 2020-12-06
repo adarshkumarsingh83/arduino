@@ -141,6 +141,11 @@ const int NEXT_BLOCK_PUBLISHING_CHANNEL = 9; //PUBLISHING SINGAL TO NEXT BLOCK S
 const int PREVIOUS_BLOCK_SUBSCRIPTION_CHANNEL = A2; //LISTENING SINGAL FROM PREVIOUS BLOCK SYAING PREVIOUS BLOCK IS OCCUPIED
 const int NEXT_BLOCK_SUBSCRIPTION_CHANNEL = A3; //LISTENING SINGAL FROM NEXT BLOCK SYAING NEXT BLOCK IS OCCUPIED
 
+const int RED_SIGNAL_VALUE = 400;
+const int YELLOW_SIGNAL_VALIUE = 600;
+const int GREEN_SIGNAL_VALUE = 1000;
+
+
 enum SIGNAL_STATES {
 
   // CASE 1  WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
@@ -169,8 +174,8 @@ enum SIGNAL_STATES {
 };
 
 
-SIGNAL_STATES singnalState = FOWARD_GREEN_BACKWARD_GREEN;
 
+SIGNAL_STATES singnalState = FOWARD_GREEN_BACKWARD_GREEN;
 int forwardSensor;
 int backwardSensor;
 int previousBlockOccupancySingal;
@@ -221,34 +226,66 @@ void loop() {
 
     // CASE 1  WHEN CURRENT AND PREVIOUS AND NEXT BLOCK IS EMPTY
     case FOWARD_GREEN_BACKWARD_GREEN:
+      forwardGreenAndBackwardGreenSignal(forwardSensor
+                                         , backwardSensor
+                                         , previousBlockOccupancySingal
+                                         , nextBlockOccupancySingal);
       break;
-      
+
     // CASE 2 WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
     case FOWARD_RED_BACKWARD_GREEN:
+      forwardRedAndBackwardGreenSignal(forwardSensor
+                                       , backwardSensor
+                                       , previousBlockOccupancySingal
+                                       , nextBlockOccupancySingal);
       break;
 
     // CASE 3 WHEN PREVIOUS AND NEXT BLOCK IS EMPTY AND CURRENT BLOCK IS NOT EMPTY
     case FORWARD_GREEN_AND_BACKWARD_GREEN_1:
+      forwardRedAndBackwardGreen1Signal(forwardSensor
+                                        , backwardSensor
+                                        , previousBlockOccupancySingal
+                                        , nextBlockOccupancySingal);
       break;
 
     // CASE 4 WHEN PREVIOUS AND CURRENT BLOCK EMPTY AND NEXT BLOCK IS NOT EMPTY
     case FORWRD_GREEN_AND_BACKWARD_RED:
+      forwardGreenAndBackwardRed(forwardSensor
+                                 , backwardSensor
+                                 , previousBlockOccupancySingal
+                                 , nextBlockOccupancySingal);
       break;
 
     // CASE 5 WHEN CURRENT BLOCK IS EMPTY AND PREVIOUS AND NEXT BLOCK IS NOT EMPTY
     case FORWARD_RED_AND_BACKWARD_RED:
+      forwardRedAndBackwardRed(forwardSensor
+                               , backwardSensor
+                               , previousBlockOccupancySingal
+                               , nextBlockOccupancySingal);
       break;
-      
+
     // CASE 6 WHEN PREVIOUS AND CURRENT IS EMPTY AND NEXT BLOCK IS NOT EMPTY
     case FORWARD_RED_AND_BACKWARD_GREEN_1:
+      forwardRedAndBackwardGreen1(forwardSensor
+                                  , backwardSensor
+                                  , previousBlockOccupancySingal
+                                  , nextBlockOccupancySingal);
       break;
 
     // CASE 7 WHEN PREVIOUS IS EMPTY AND CURRENT AND NEXT BLOCK IS NOT EMPTY
     case FORWARD_GREEN_AND_BACKWARD_RED_1:
+      forwardGreenAndBackwardRed1(forwardSensor
+                                  , backwardSensor
+                                  , previousBlockOccupancySingal
+                                  , nextBlockOccupancySingal);
       break;
 
     // CASE 8 WHEN PREVUIOS CURRENT AND NEXT IS NOT EMPTY
     case FORWARD_RED_AND_BACKWARD_RED_1:
+      forwardRedAndBackwardRed1(forwardSensor
+                                , backwardSensor
+                                , previousBlockOccupancySingal
+                                , nextBlockOccupancySingal);
       break;
   }
 }
@@ -269,9 +306,12 @@ void loop() {
      |------------------|                 |------------------|                 |------------------|
      ---->              G                                    G                                   G
 */
-void forwardGreenAndBackwardGreenSignal() {
-
-}
+void forwardGreenAndBackwardGreenSignal(int forwardSensor
+                                        , int backwardSensor
+                                        , int previousBlockOccupancySingal
+                                        , int nextBlockOccupancySingal) {
+      
+} 
 
 // WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
 /*
@@ -288,7 +328,10 @@ void forwardGreenAndBackwardGreenSignal() {
      |------------------|                 |------------------|                 |------------------|
      ---->              G                                    G                                   G
 */
-void forwardRedAndBackwardGreenSignal() {
+void forwardRedAndBackwardGreenSignal(int forwardSensor
+                                      , int backwardSensor
+                                      , int previousBlockOccupancySingal
+                                      , int nextBlockOccupancySingal) {
 
 }
 
@@ -308,8 +351,11 @@ void forwardRedAndBackwardGreenSignal() {
      |------------------|                 |------------------|                 |------------------|
      ---->              R                                    G                                   G
 */
-void forwardRedAndBackwardGreen1Signal() {
-
+void forwardRedAndBackwardGreen1Signal(int forwardSensor
+                                       , int backwardSensor
+                                       , int previousBlockOccupancySingal
+                                       , int nextBlockOccupancySingal) {
+ 
 }
 
 
@@ -328,7 +374,10 @@ void forwardRedAndBackwardGreen1Signal() {
      |------------------|                 |------------------|                 |------------------|
      ---->              Y                                    R                                   G
 */
-void forwardGreenAndBackwardRed() {
+void forwardGreenAndBackwardRed(int forwardSensor
+                                , int backwardSensor
+                                , int previousBlockOccupancySingal
+                                , int nextBlockOccupancySingal) {
 
 }
 
@@ -347,7 +396,10 @@ void forwardGreenAndBackwardRed() {
      |------------------|                 |------------------|                 |------------------|
      ---->              Y                                    R                                    G
 */
-void forwardRedAndBackwardRed() {
+void forwardRedAndBackwardRed(int forwardSensor
+                              , int backwardSensor
+                              , int previousBlockOccupancySingal
+                              , int nextBlockOccupancySingal) {
 
 }
 
@@ -367,7 +419,10 @@ void forwardRedAndBackwardRed() {
      |------------------|                 |------------------|                 |------------------|
      ---->              R                                    G                                    G
 */
-void forwardRedAndBackwardGreen1() {
+void forwardRedAndBackwardGreen1(int forwardSensor
+                                 , int backwardSensor
+                                 , int previousBlockOccupancySingal
+                                 , int nextBlockOccupancySingal) {
 
 }
 
@@ -386,7 +441,10 @@ void forwardRedAndBackwardGreen1() {
     |------------------|                 |------------------|                 |------------------|
     ---->              R                                    R                                    G
 */
-void forwardGreenAndBackwardRed1() {
+void forwardGreenAndBackwardRed1(int forwardSensor
+                                 , int backwardSensor
+                                 , int previousBlockOccupancySingal
+                                 , int nextBlockOccupancySingal) {
 
 }
 
@@ -405,7 +463,10 @@ void forwardGreenAndBackwardRed1() {
     |------------------|                 |------------------|                 |------------------|
     ---->              R                                    R                                    G
 */
-void forwardRedAndBackwardRed1() {
+void forwardRedAndBackwardRed1(int forwardSensor
+                               , int backwardSensor
+                               , int previousBlockOccupancySingal
+                               , int nextBlockOccupancySingal) {
 
 }
 
@@ -414,7 +475,7 @@ void forwardRedAndBackwardRed1() {
 //        UTILITY METHOD FOR SETTING UP THE VLAUES FOR THE LED LIGHTS AND OUPUTPINS FOR OTHER BLOCKS
 /*----------------------------------------------------------------------------------------------------------------------*/
 // SETTING UP THE VALUES FOR CURRRENT BLOCK FORWARD SIGNALS FIRST
-void setSignalsForward( int forwardGreen,
+void setForwardSignals( int forwardGreen,
                         int forwardYellow,
                         int fowardRed) {
   //LOW FOR ON HIGHT FOR OFF
@@ -424,7 +485,7 @@ void setSignalsForward( int forwardGreen,
 }
 
 // SETTING UP THE VALUES FOR CURRRENT BLOCK BACKWARD SIGNALS SECOUND
-void setSignalsBackward( int backwardGreen,
+void setBackwardSignals( int backwardGreen,
                          int backwardYellow,
                          int backwardRed) {
   //LOW FOR ON HIGHT FOR OFF
