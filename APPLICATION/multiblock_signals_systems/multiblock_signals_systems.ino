@@ -316,25 +316,106 @@ void forwardGreenAndBackwardGreenSignal(int forwardSensor
   setForwardSignals(LOW, HIGH, HIGH);
   setBackwardSignals(LOW, HIGH, HIGH);
   setPublishingChannelForAdjacentBlocks(GREEN_SIGNAL_VALUE, GREEN_SIGNAL_VALUE);
+  
   delay(DELAY_TIME);
+ 
   if (forwardSensor > 500 && backwardSensor > 500 ) {
 
-    if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
-      // PREVIOUS CURRENT AND NEXT BLOCK IS NOT OCCUPIED
-      singnalState = FORWARD_GREEN_BACKWARD_GREEN;
-      setPublishingChannelForAdjacentBlocks(GREEN_SIGNAL_VALUE, GREEN_SIGNAL_VALUE);
-    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
-      // BLOCK AHEAD OF PREVUIOS BLOCK IS OCCUPIED 
-      
+    if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS EMPTY AND PREVUIOS AND NEXT BLOCK IS NOT EMPTY
+      singnalState = FORWARD_RED_AND_BACKWARD_RED;
+    } else if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      // WHEN CURRENT AND NEXT BLOCK IS EMPTY AND PREVUIOS BLOCK IS NOT EMPTY AND BLOCK AFTER NEXT BLOCK IS NOT EMPTY
+     singnalState = ;
     } else if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
-      //PREVIOUS BLOCK IS OCCUPIED 
+      // WHEN CURRENT BLOCK AND NEXT BLOCK IS EMPTY AND PREVUIOS BLOCK IS NOT EMPTY
+
+    } if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS EMPTY AND PREVUIOS BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY, BLOCK BEFORE PREVUIOS BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      //  WHEN CURRENT PREVUIOS AND NEXT BLOCK IS EMPTY BLOCK BEFORE PREVUIOS AND BLOCK AFTER NEXT IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT PREVUIOS AND NEXT BLOCK IS EMPTY, BLOCK BEFORE PREVUIOS BLOCK IS NOT EMPTY
+
+    } if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT AND PREVUIOS BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      // WHEN CURRENT AND PREVUIOS AND NEXT BLOCK IS EMPTY , BLOCK AFTER NEXT IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN PREVIOUS CURRENT AND NEXT BLOCK IS EMPTY
+
     }
+    
+
 
   } else if (forwardSensor < 500 && backwardSensor > 500) {
     // CURRENT BLOCK IS STARTED TO FILL FROM FORWARD SIDE
 
+    if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY AND PREVUIOS AND NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      // WHEN CURRENT IS NOT EMPTY  AND NEXT BLOCK IS EMPTY AND PREVUIOS BLOCK IS NOT EMPTY AND BLOCK AFTER NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY  AND NEXT BLOCK IS EMPTY AND PREVUIOS BLOCK IS NOT EMPTY
+
+    } if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY AND PREVUIOS BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY, BLOCK BEFORE PREVUIOS BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      //  WHEN CURRENT BLOCK IS NOT EMPTY  PREVUIOS AND NEXT BLOCK IS EMPTY BLOCK BEFORE PREVUIOS AND BLOCK AFTER NEXT IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY PREVUIOS AND NEXT BLOCK IS EMPTY, BLOCK BEFORE PREVUIOS BLOCK IS NOT EMPTY
+
+    } if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK ISNOT EMPTY AND PREVUIOS BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      // WHEN CURRENT BLOCK IS NOT AND PREVUIOS AND NEXT BLOCK IS EMPTY , BLOCK AFTER NEXT IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY PREVIOUS  AND NEXT BLOCK IS EMPTY
+
+    }
+
+
   } else if (forwardSensor > 500 && backwardSensor < 500) {
     // CURRENT BLOCK IS STARTED TO FILL FROM BACKWARD SIDE
+    
+    if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY AND PREVUIOS AND NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      // WHEN CURRENT IS NOT EMPTY  AND NEXT BLOCK IS EMPTY AND PREVUIOS BLOCK IS NOT EMPTY AND BLOCK AFTER NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == RED_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY  AND NEXT BLOCK IS EMPTY AND PREVUIOS BLOCK IS NOT EMPTY
+
+    } if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY AND PREVUIOS BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY, BLOCK BEFORE PREVUIOS BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      //  WHEN CURRENT BLOCK IS NOT EMPTY  PREVUIOS AND NEXT BLOCK IS EMPTY BLOCK BEFORE PREVUIOS AND BLOCK AFTER NEXT IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == YELLOW_SIGNAL_VALIUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY PREVUIOS AND NEXT BLOCK IS EMPTY, BLOCK BEFORE PREVUIOS BLOCK IS NOT EMPTY
+
+    } if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == RED_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK ISNOT EMPTY AND PREVUIOS BLOCK IS EMPTY AND NEXT BLOCK IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == YELLOW_SIGNAL_VALIUE) {
+      // WHEN CURRENT BLOCK IS NOT AND PREVUIOS AND NEXT BLOCK IS EMPTY , BLOCK AFTER NEXT IS NOT EMPTY
+
+    } else if (previousBlockOccupancySingal == GREEN_SIGNAL_VALUE && nextBlockOccupancySingal == GREEN_SIGNAL_VALUE) {
+      // WHEN CURRENT BLOCK IS NOT EMPTY PREVIOUS  AND NEXT BLOCK IS EMPTY
+
+    }
   }
 }
 
