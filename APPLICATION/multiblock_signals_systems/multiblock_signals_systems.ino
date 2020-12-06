@@ -119,31 +119,34 @@
      ---->              R                                    R                                    G
 */
 
-
+// CURRENT BLOCK FORWARD AND BACKWARD SENSOR PIN CONFIGURATION 
 const int FORWARD_SENSOR = A0; // CURRENT BLOCK FORWRD SENSOR 1 ON PIN AO
 const int BACKWARD_SENSOR = A1; // CURRENT BLOCK BACKWARD SENSOR 2 ON PIN A1
 
-//FIRST/FORWARD LIGHT BLOCK SIGNAL
+// FIRST/FORWARD LIGHT BLOCK SIGNAL
 const int FORWARD_GREEN = 2;
 const int FORWARD_YELLOW = 3;
 const int FORWARD_RED = 4;
 
-//SECOUND/BACKWARD LIGHT BLOCK SIGNAL
+// SECOUND/BACKWARD LIGHT BLOCK SIGNAL
 const int BACKWARD_GREEN = 5;
 const int BACKWARD_YELLOW = 6;
 const int BACKWARD_RED = 7;
 
-//PUBLISHING CHANNELS FOR OTHER BLOCKS
+// PUBLISHING CHANNELS FOR OTHER BLOCKS
 const int PREVIOUS_BLOCK_PUBLISHING_CHANNEL = 8; //PUBLISHING SINGAL TO PREVIOUS BLOCK SYAING CURRENT BLOCK IS OCCUPIED
 const int NEXT_BLOCK_PUBLISHING_CHANNEL = 9; //PUBLISHING SINGAL TO NEXT BLOCK SYAING CURRENT BLOCK IS OCCUPIED
 
-//RECIEVVING CHANNELS FROM OTHER BLOCKS
+// RECIVEING CHANNELS FROM OTHER BLOCKS
 const int PREVIOUS_BLOCK_SUBSCRIPTION_CHANNEL = A2; //LISTENING SINGAL FROM PREVIOUS BLOCK SYAING PREVIOUS BLOCK IS OCCUPIED
 const int NEXT_BLOCK_SUBSCRIPTION_CHANNEL = A3; //LISTENING SINGAL FROM NEXT BLOCK SYAING NEXT BLOCK IS OCCUPIED
 
+// VALUES PUBLISHING FOR OTHER BLOCKS FOR DIFFERENT TYPES OF LIGHTS 
 const int RED_SIGNAL_VALUE = 400;
 const int YELLOW_SIGNAL_VALIUE = 600;
 const int GREEN_SIGNAL_VALUE = 1000;
+
+const int DELAY_TIME = 500;
 
 
 enum SIGNAL_STATES {
@@ -182,7 +185,7 @@ int previousBlockOccupancySingal;
 int nextBlockOccupancySingal;
 
 
-const int DELAY_TIME = 500;
+
 void setup() {
   Serial.begin(9600);
 
@@ -310,8 +313,12 @@ void forwardGreenAndBackwardGreenSignal(int forwardSensor
                                         , int backwardSensor
                                         , int previousBlockOccupancySingal
                                         , int nextBlockOccupancySingal) {
-      
-} 
+  setForwardSignals(LOW, HIGH, HIGH);
+  setBackwardSignals(LOW, HIGH, HIGH);
+  setPublishingChannelForAdjacentBlocks(GREEN_SIGNAL_VALUE, GREEN_SIGNAL_VALUE);
+  delay(DELAY_TIME);
+
+}
 
 // WHEN CURRENT AND NEXT BLOCK BLOCK IS EMPTY AND PREVIOUS IS NOT EMPTY
 /*
@@ -355,7 +362,7 @@ void forwardRedAndBackwardGreen1Signal(int forwardSensor
                                        , int backwardSensor
                                        , int previousBlockOccupancySingal
                                        , int nextBlockOccupancySingal) {
- 
+
 }
 
 
