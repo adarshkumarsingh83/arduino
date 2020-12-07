@@ -253,12 +253,14 @@ void forwardYellowBackwardYellow1Signal(int forwardSensor
   setPublishingChannelForAdjacentBlocks(OCCUPIED_SINGAL, OCCUPIED_SINGAL);
   delay(1000);
 
-  if ((forwardSensor > 500) && (backwardSensor > 500) && (clearCount < 5)) {
-    clearCount++;
+  if ((forwardSensor > 500) && (backwardSensor > 500)) {
+    if (clearCount < 5) {
+      clearCount++;
+    } else if (clearCount > 4) {
+      signalState = ST_FORWARD_GREEN_BACKWARD_GREEN;
+    }
   } else if ((forwardSensor < 500) || (backwardSensor < 500) && clearCount < 5) {
     clearCount = 0;
-  } else if ((forwardSensor > 500) && (backwardSensor > 500) && (clearCount > 4)) {
-    signalState = ST_FORWARD_GREEN_BACKWARD_GREEN;
   }
 }
 
