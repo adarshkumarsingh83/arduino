@@ -19,6 +19,7 @@ int forwardSensor;
 int backwardSensor;
 int previousBlockOccupancySignal;
 int nextBlockOccupancySignal;
+int clearCount;
 
 enum SIGNAL_STATES {
   ST_FORWARD_GREEN_BACKWARD_GREEN,
@@ -28,6 +29,7 @@ enum SIGNAL_STATES {
   ST_FORWARD_RED_BACKWARD_RED_1,
   ST_FORWARD_RED_BACKWARD_RED_2,
   ST_FORWARD_RED_BACKWARD_RED_3,
+  ST_FORWARD_YELLOW_BACKWARD_YELLOW_1,
 }; //Sets up different signal states for the entire program
 
 SIGNAL_STATES signalState = ST_FORWARD_GREEN_BACKWARD_GREEN; //Sets default state to Green and Green
@@ -92,6 +94,9 @@ void loop() {
     case ST_FORWARD_RED_BACKWARD_RED_3:
       forwardRedBackwardRed3Signal(forwardSensor, backwardSensor, previousBlockOccupancySignal, nextBlockOccupancySignal);
       break;
+    case ST_FORWARD_YELLOW_BACKWARD_YELLOW_1:
+      forwardYellowBackwardYellow1Signal(forwardSensor, backwardSensor, previousBlockOccupancySignal, nextBlockOccupancySignal);
+      break;
       //this sets up our different loops within the main loop for our different signal states
   }
 }
@@ -104,8 +109,8 @@ void forwardGreenBackwardGreenSignal(int forwardSensor
   setForwardSignals( LOW, HIGH, HIGH);
   setBackwardSignals(LOW, HIGH, HIGH);
   setPublishingChannelForAdjacentBlocks(UNOCCUPIED_SINGAL, UNOCCUPIED_SINGAL);
-
   delay(DELAY_TIME);
+  clearCount = 0;
 
   if ((forwardSensor > 500) && (backwardSensor > 500)) {
     if ((previousBlockOccupancySignal < 300) && (nextBlockOccupancySignal > 300)) {
@@ -235,9 +240,28 @@ void forwardRedBackwardRed3Signal(int forwardSensor
   delay(DELAY_TIME);
 
   if ((forwardSensor > 500) && (backwardSensor > 500)) {
-    signalState = ST_FORWARD_GREEN_BACKWARD_GREEN; //switched to Green unoccupied signal
+    signalState = ST_FORWARD_YELLOW_BACKWARD_YELLOW_1; //switched to Green unoccupied signal
   }
 }
+
+void forwardYellowBackwardYellow1Signal(int forwardSensor
+                                        , int backwardSensor
+                                        , int previousBlockOccupancySignal
+                                        , int nextBlockOccupancySignal)  {
+  setForwardSignals( HIGH, LOW, HIGH );
+  setBackwardSignals(HIGH, LOW, HIGH);
+  setPublishingChannelForAdjacentBlocks(OCCUPIED_SINGAL, OCCUPIED_SINGAL);
+  delay(1000);
+
+  if ((forwardSensor > 500) && (backwardSensor > 500) && (clearCount < 5)) {
+    clearCount++;
+  } else if ((forwardSensor < 500) || (backwardSensor < 500) && clearCount < 5) {
+    clearCount = 0;
+  } else if ((forwardSensor > 500) && (backwardSensor > 500) && (clearCount > 4)) {
+    signalState = ST_FORWARD_GREEN_BACKWARD_GREEN;
+  }
+}
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
