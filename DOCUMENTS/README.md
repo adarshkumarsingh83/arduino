@@ -4,13 +4,6 @@
 ### document 
 - https://www.arduino.cc/reference/en/
 
-### Help 
-- https://www.tutorialspoint.com/arduino/index.htm
-- http://www.toptechboy.com/
-
-### youtube help  
-- https://www.youtube.com/watch?v=d8_xXNcGYgo&list=PLGs0VKk2DiYx6CMdOQR_hmJ2NbB4mZQn-
-
 ---
 # Basic Code 
 ```
