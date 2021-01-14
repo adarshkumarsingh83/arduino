@@ -92,6 +92,37 @@ int functionName(dataType variableName){ //formal parameter
 
 ```
 
+
+---
+
+## Enums 
+---
+
+### Declaration
+```
+enum State {
+  ON,
+  OFF
+};
+```
+### Usage 
+```
+ State button = State.ON;
+
+  switch (button) {
+
+  case ON:
+       [do something...]
+    break;
+  case OFF;
+       [do something else...]
+    break;
+
+ }
+
+```
+
+
 ---
 
 ## USEFULS 
