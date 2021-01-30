@@ -21,3 +21,6 @@
 ```
 
 ![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Pcf8574_chain_example/poc.jpg)
+
+
+# [Reference](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Pcf8574_chain_example/PCA8574_PCA8574A.pdf)
