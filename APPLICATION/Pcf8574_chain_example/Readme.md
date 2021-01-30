@@ -8,7 +8,8 @@
 ```
 # Addressing configuation via jumper 
 
-	A2 A1 A0
+	A2 A1 A0      address of board 
+----------------------------	
 	0  0   0   =  0x20
 	0  0   0   =  0x21
     0  1   0   =  0x22
