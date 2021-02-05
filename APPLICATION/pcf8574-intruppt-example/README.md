@@ -3,7 +3,7 @@
 ---
 
 ## CONNECTION 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/pcf8574-intruppt-example/connection-details.JPG)
 ```
 sda scl from arduino to the pcf8574 board sda and scl 
 +5v and gnd from arduino to the pcf8574 board vcc and gnd
