@@ -12,7 +12,7 @@ PCF8574 pcf8574(0x20, INTERRUPTED_PIN, infraRedActive);
 
 bool irActive = false;
 void interrupt_routine();
-uint8_t val = 0;
+uint8_t val = -1;
 
 void setup() {
 
@@ -35,7 +35,7 @@ void setup() {
 void loop() {
   pcf8574.digitalWrite(P0, LOW);
 
-  if (irActive == true) {
+  if (irActive) {
     pcf8574.digitalWrite(P0, HIGH);
     pcf8574.digitalWrite(P1, LOW);
     val = pcf8574.digitalRead(P2);
@@ -51,6 +51,7 @@ void loop() {
     delay(1000);
     irActive = false;
     pcf8574.digitalWrite(P1, HIGH);
+    val = -1;
   }
 
 }
