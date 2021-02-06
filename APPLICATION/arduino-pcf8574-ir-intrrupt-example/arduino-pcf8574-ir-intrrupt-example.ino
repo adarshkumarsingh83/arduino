@@ -26,9 +26,9 @@ void setup() {
 
   Serial.print("Init pcf8574...");
   if (pcf8574.begin()) {
-    Serial.println("OK");
+    Serial.println("PCF8574 INIT SUCCESS ");
   } else {
-    Serial.println("KO");
+    Serial.println("PCF8574 INIT FAILED ");
   }
 }
 
