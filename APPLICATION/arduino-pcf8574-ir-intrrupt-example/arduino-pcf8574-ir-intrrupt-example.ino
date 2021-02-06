@@ -34,7 +34,6 @@ void setup() {
 
 void loop() {
   pcf8574.digitalWrite(P0, LOW);
-
   if (irActive) {
     pcf8574.digitalWrite(P0, HIGH);
     pcf8574.digitalWrite(P1, LOW);
@@ -43,6 +42,7 @@ void loop() {
       Serial.print("READ VALUE FROM PCF P2 ");
       Serial.println(val);
     }
+    val = -1;
     val = pcf8574.digitalRead(P3);
     if (val == 0) {
       Serial.print("READ VALUE FROM PCF P3 ");
