@@ -4,7 +4,7 @@
 
 ## Connection Details 
 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/arduino-intrrupt-example/pir_interrupt_wiring.png)
 
 ```
  arduino pin 8 to the long leg resistor of 220oms ot led and gnd to the short leg
@@ -13,4 +13,4 @@
 
 ```
 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/arduino-intrrupt-example/CONNECTIONS.JPG)
