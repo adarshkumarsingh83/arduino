@@ -6,7 +6,7 @@
 
 * CONNECTION DETAILS 
 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/pcf8574-chain-ir-intrrupt-example/connection-details.JPG)
 
 ```
 sda scl from arduino to the pcf8574 board sda and scl 
