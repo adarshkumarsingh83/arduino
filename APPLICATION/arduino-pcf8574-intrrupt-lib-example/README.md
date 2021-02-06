@@ -3,7 +3,7 @@
 ---
 
 ## CONNECTION 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/arduino-pcf8574-intrupet-lib-example/connection-details.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/arduino-pcf8574-intrrupt-lib-example/connection-details.JPG)
 ```
 sda scl from arduino to the pcf8574 board sda and scl 
 +5v and gnd from arduino to the pcf8574 board vcc and gnd
