@@ -1,20 +1,20 @@
 #include <Wire.h>
 
-int address = 0x20;   
-
-#define INTERRUPTED_PIN 2
-
-bool irActive = false;
-
 // Function interrupt
 void infraRedActive();
 
+int input = -1;
+bool irActive = false;
+const int address = 0x20;
+const byte INTERRUPTED_PIN = 2;
 
 void setup() {
+
   Serial.begin(9600);
-  // Set pinMode to OUTPUT
-  Wire.begin();            
-  
+
+  /// Set pinMode to OUTPUT
+  Wire.begin();
+
   // Turn off all GPIO pins on both I2C expanders by writing all "1"
   Wire.beginTransmission(address);
   Wire.write(0xFF);
@@ -26,40 +26,41 @@ void setup() {
 
 void loop() {
 
-  if (irActive) {
-    int input = readInput(address);
-    Serial.print("READ VALUE FROM PCF ");
-    Serial.println(input);
+  if (irActive == true) {
+    input = readInput(address, 6);
+    if (input != -1) {
+      Serial.print("READ VALUE FROM PCF 6 ");
+      Serial.println(input);
+    }
+    input = -1;
+
+    input = readInput(address, 7);
+    if (input != -1) {
+      Serial.print("READ VALUE FROM PCF 7 ");
+      Serial.println(input);
+    }
+    
     Wire.beginTransmission(address);
     Wire.write(253);
-    Wire.endTransmission();
-    delay(1000); 
-    irActive = false;
-  } else {  
-    Serial.println();
-    Wire.beginTransmission(address);
-    Wire.write(255);
     Wire.endTransmission();
     delay(1000);
     Wire.beginTransmission(address);
     Wire.write(254);
     Wire.endTransmission();
-    delay(1000);
+    irActive = false;
   }
-}
 
-byte readInput(int address){
+}
+// input pins are 6 and 7 on PCF8574
+byte readInput(int address, int pin ) {
   Wire.beginTransmission(address);
-  Wire.requestFrom(address, 3);
+  Wire.requestFrom(address, pin );
   int Data_In = Wire.read();
   Wire.endTransmission();
   return Data_In;
 }
 
 void infraRedActive() {
-  /*
-    Interrupt called (No Serial no read no wire in this
-    function, and DEBUG disabled on PCF library)
-  */
+  // Serial.println("*");
   irActive = true;
 }
