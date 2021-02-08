@@ -4,7 +4,7 @@
 
 ## Conection details 
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/multi-relay-control/connections-details.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/arduino-multi-relay-swtich-control/connections-details.JPG)
 
 ```
 connect the +5v and gnd to the bradboard from arduino 
