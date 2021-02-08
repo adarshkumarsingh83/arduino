@@ -3,7 +3,9 @@
 --- 
 
 ## Connection Details 
-![img](https://github.com/adarshkumarsingh83/arduino/APPLICATION/arduino-relay-switch-controll/connection-details.JPG)
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/arduino-relay-switch-controll/connection-details.JPG)
+
 ```
 connect the +5v and gnd to the bradboard 
 connect the +5v and gnd to the realy switch  vcc and gnd form breadboard 
