@@ -1,6 +1,10 @@
 # ESP8266 
 
 --- 
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/DOCUMENTS/ESP8266/ESP8266-pin%20digram.png)
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/DOCUMENTS/ESP8266/esp8266-pin-digram.png)
+
 
 ## HELP URL 
 * https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all#drivers-if-you-need-them
@@ -35,6 +39,9 @@ then Test from the File -> Example -> ESP8266 -> Blink
 
 # for solving the errror on bigsur mac os 
 ### https://forum.arduino.cc/index.php?topic=702144.0
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/DOCUMENTS/ESP8266/esp3266-mac-bigsur-issue-solution.png)
+
 ```
 
 1.- Open ~/Library/Arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/pyserial/serial/tools/list_ports_osx.py
