@@ -3,6 +3,9 @@
 ---
 
 ### connection details 
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-web-server-led-app/server-console.png)
+
 ```
 connwect the gnd from esp8266 to the breadboard gnd 
 connect the D1 and D2 to the  2 risistor on the breaadboard 
@@ -12,3 +15,6 @@ then the url http://<ip show in the console>
 then ui must be pop up for the on and off button 
 
 ```
+
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-web-server-led-app/server-console.png)
