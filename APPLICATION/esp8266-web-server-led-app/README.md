@@ -4,7 +4,7 @@
 
 ### connection details 
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-web-server-led-app/server-console.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-web-server-led-app/esp8266-web-server-schematics_bb.png)
 
 ```
 connwect the gnd from esp8266 to the breadboard gnd 
