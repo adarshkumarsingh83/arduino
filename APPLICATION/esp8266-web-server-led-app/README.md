@@ -2,7 +2,7 @@
 
 ---
 
-### connection details 
+## connection details 
 
 ![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-web-server-led-app/esp8266-web-server-schematics_bb.png)
 
@@ -16,5 +16,6 @@ then ui must be pop up for the on and off button
 
 ```
 
+## Web UI for the web server 
 
 ![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-web-server-led-app/server-console.png)
