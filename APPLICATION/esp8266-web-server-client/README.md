@@ -28,6 +28,7 @@ FOR LED OFF
 	http://192.168.0.141/led-off
 
 # CLIENT NODE 
-	take the server ip address and change the ip address in the client stetch in serverLedOn and serverLedOff variable 
+	take the server ip address and change the ip address in the client stetch in serverLedOn and serverLedOff variable
 
+    Start the client node and led will start blinking on server end 
 ```
