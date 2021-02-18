@@ -7,8 +7,8 @@
 
 
 // Set your access point network credentials
-const char* ssid = "adarsh_radha_2G";
-const char* password = "Endless@1309";
+const char* ssid = "REPLACE_WITH_YOUR_SSID";
+const char* password = "REPLACE_WITH_YOUR_PASSWORD";
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
