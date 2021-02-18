@@ -9,8 +9,8 @@ ESP8266WiFiMulti WiFiMulti;
 const char* ssid = "ESP8266-Access-Point";
 const char* password = "123456789";
 
-const char* serverLedOn = "http://192.168.4.1/led-on";
-const char* serverLedOff = "http://192.168.4.1/led-off";
+const char* serverLedOn = "http://192.168.0.141/led-on";
+const char* serverLedOff = "http://192.168.0.141/led-off";
 
 String serverLedOnStatus;
 String serverLedOffStatus;
@@ -32,11 +32,13 @@ void setup() {
 
 bool flipVar = true;
 unsigned long previousMillis = 0;
-const long interval = 5000;
+const long interval = 2000;
 
 void loop() {
   unsigned long currentMillis = millis();
   if (currentMillis - previousMillis >= interval) {
+    // save the last HTTP GET Request
+      previousMillis = currentMillis;
 
     if ((WiFiMulti.run() == WL_CONNECTED)) {
       if (flipVar) {

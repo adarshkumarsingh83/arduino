@@ -9,7 +9,7 @@ const char* password = "123456789";
 AsyncWebServer server(80);
 
 // Assign output variables to GPIO pins
-const int LED_PIN = 4;
+const int LED_PIN = D0;
 
 String ledOnAction() {
   digitalWrite(LED_PIN, HIGH);
