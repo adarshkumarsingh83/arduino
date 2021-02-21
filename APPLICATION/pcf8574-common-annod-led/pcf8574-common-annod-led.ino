@@ -57,38 +57,51 @@ void loop() {
        p5 red_1
 */
 
-void lightOperation( bool green1, bool yellow1, bool red1,  bool green2, bool yellow2, bool red2) {
+void lightOperation( bool red1, bool green1, bool blue1,
+                     bool red2, bool green2, bool blue2) {
 
   Serial.println(green1);
-  Serial.println(yellow1);
+  Serial.println(blue1);
   Serial.println(red1);
 
   Serial.println(green2);
-  Serial.println(yellow2);
+  Serial.println(blue2);
   Serial.println(red2);
   Serial.println();
 
-  if (!red2) {
+  if (!blue2) {
     sum += 32;
+  } else {
+    Serial.println("blue2");
   }
-  if (!yellow2 ) {
-    sum += 16;
-  }
-
   if (!green2) {
+    sum += 16;
+  } else {
+    Serial.println("green2");
+  }
+
+  if (!red2) {
     sum += 8;
+  } else {
+    Serial.println("red2");
   }
 
-  if (!red1) {
+  if (!blue1) {
     sum += 4;
-  }
-
-  if (!yellow1) {
-    sum += 2;
+  } else {
+    Serial.println("blue1");
   }
 
   if (!green1) {
+    sum += 2;
+  } else {
+    Serial.println("green1");
+  }
+
+  if (!red1) {
     sum += 1;
+  } else {
+    Serial.println("red1");
   }
 
   Wire.beginTransmission(address);
