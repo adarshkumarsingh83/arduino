@@ -22,7 +22,7 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ```
 * $ curl "http://192.168.0.185/led-operation?type=led&pin=13&state=off"
 ```
-{ 'type': 'led','pin':'13','state':'off','status':'OFF'}USMB113823-2:~ us-guest$ 
+{ 'type': 'led','pin':'13','state':'off','status':'OFF'}
 ```
 * $ curl "http://192.168.0.185/led-operation?type=led&pin=12&state=on"
 ```
@@ -30,5 +30,5 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ```
 * $ curl "http://192.168.0.185/led-operation?type=led&pin=12&state=off"
 ```
-{ 'type': 'led','pin':'12','state':'off','status':'OFF'}USMB113823-2:~ us-guest$ 
+{ 'type': 'led','pin':'12','state':'off','status':'OFF'}
 ```
