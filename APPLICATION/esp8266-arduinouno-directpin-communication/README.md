@@ -6,9 +6,9 @@
 - ArduinoJson
 	- Arduino IDE -> Tool -> Manage Library -> Search for "ArduinoJson"  6.x version and install it 
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Esp8266-server-uno-client-directpin-communication/CONNECTION.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduinouno-directpin-communication/CONNECTION.png)
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Esp8266-server-uno-client-directpin-communication/I2CNodex.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduinouno-directpin-communication/I2CNodex.png)
 
 ## testing
 ```
