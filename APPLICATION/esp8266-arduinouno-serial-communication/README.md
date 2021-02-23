@@ -1,7 +1,7 @@
 
 
 ## connections detsils 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduinouno-communication/connections.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduinouno-serial-communication/connections.JPG)
 
 ```
 connect pin13 and pin 12 from arduino to the 220oms resistors on breadboard 
