@@ -4,9 +4,9 @@
 
 # PCF8574 addressing configuraiton adjustments
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Pcf8574_chain_example/pca8574%20addressing%20configuration.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/pcf8574_chain_example/pca8574%20addressing%20configuration.png)
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Pcf8574_chain_example/pcf.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/pcf8574_chain_example/pcf.png)
 
 ```
 # Addressing configuation via jumper 
@@ -23,7 +23,6 @@
     1  1   1   =  0x27
 ```
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Pcf8574_chain_example/poc.jpg)
-
-
-# [Reference Document ](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/Pcf8574_chain_example/PCA8574_PCA8574A.pdf)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/pcf8574_chain_example/poc.jpg)
+p
+# [Reference Document ](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/pcf8574_chain_example/PCA8574_PCA8574A.pdf)
