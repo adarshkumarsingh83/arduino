@@ -28,3 +28,12 @@ take the rx pin of the nodemcu/esp8266 and connect to the tx pin of the arduino
 ```
 { 'type': 'led','board':'0','pin':'0','state':'on','status':'off'}
 ```
+
+```
+every pcf8574 will give 8 led so max we can hook 8 board in chain 
+so in that case we have total 64 led controll by the same endpoint 
+only we have to provide the ledno in the url as query param 
+type=led 
+led=xxx position of the led from 1 to max 64 
+state=on/off 
+```
