@@ -1,11 +1,11 @@
 # ESP8266 Internal Communication 
 
 ---- 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-multinode-communication-espnow-lib/image/ESP8266-pin%20digram.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-node-bidirectional-communication-espnow-lib/image/ESP8266-pin%20digram.png)
 
 ## Connection
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-multinode-communication-espnow-lib/image/conection.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-node-bidirectional-communication-espnow-lib/image/conection.JPG)
 
 
 ```
