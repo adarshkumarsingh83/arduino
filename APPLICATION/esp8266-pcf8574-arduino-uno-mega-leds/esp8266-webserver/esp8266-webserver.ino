@@ -4,8 +4,8 @@
 
 ESP8266WebServer server;
 /* Set these to your credentials. */
-const char* ssid = "adarsh_radha_2G";
-const char* password = "Endless@1309";
+const char* ssid = "REPLACE_WITH_YOUR_SSID";
+const char* password = "REPLACE_WITH_YOUR_PASSWORD";
 
 void setup() {
 
