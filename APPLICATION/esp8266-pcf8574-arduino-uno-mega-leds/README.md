@@ -37,3 +37,8 @@ type=led
 led=xxx position of the led from 1 to max 64 
 state=on/off 
 ```
+
+### NOTE
+```
+in this project i have used common annod led but normal led will also work find 
+```
