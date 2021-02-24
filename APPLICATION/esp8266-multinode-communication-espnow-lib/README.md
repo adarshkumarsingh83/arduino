@@ -1,10 +1,12 @@
 # ESP8266 Internal Communication 
 
 ---- 
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-multinode-communication-espnow-lib/image/ESP8266-pin%20digram.png)
+
 ## Connection
 
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-multinode-communication-espnow-lib/image/conection.JPG)
 
-![img]()
 
 ```
 connect the gnd from 1st esp8266 to the gnd of the breadboard 1st 
