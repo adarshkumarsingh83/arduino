@@ -5,7 +5,7 @@
 
 ## Connection
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduino-serial-json-communication/image/conection.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduino-serial-json-communication/image/connections.JPG)
 
 
 ```connect the +3.3v and gnd/ -ve to the esp8266 3.3v and gnd pin 
