@@ -15,20 +15,20 @@ void setup() {
 
 void loop() {
    delay(1000);
-   Serial.println("-");
+   Serial.println(" ");
   // Monitor serial communication
   while (Serial.available()) {
     message = Serial.readString();
-    Serial.println(message);
+    //Serial.println(message);
     messageReady = true;
   }
 
   // Only process message if there's one
   if (messageReady) {
     // The only messages we'll parse will be formatted in JSON
-    DynamicJsonDocument doc(128); // ArduinoJson version 6+
+    DynamicJsonDocument jsonDocument(128); // ArduinoJson version 6+
     // Attempt to deserialize the message
-    DeserializationError error = deserializeJson(doc, message);
+    DeserializationError error = deserializeJson(jsonDocument, message);
     if (error) {
       //Serial.print(F("Uno deserializeJson() failed: "));
       //Serial.println(error.c_str());
@@ -37,13 +37,13 @@ void loop() {
       return;
     }
 
-    if ( doc["type"] == LED_TYPE) {
-      int pin = doc["pin"];
-      boolean state = doc["state"];
+    if ( jsonDocument["type"] == LED_TYPE) {
+      int pin = jsonDocument["pin"];
+      boolean state = jsonDocument["state"];
       // perform the led operation
       String response = ledOperation(pin, state);
-      doc["opStatus"] = response;
-      serializeJson(doc, Serial);
+      jsonDocument["opStatus"] = response;
+      serializeJson(jsonDocument, Serial);
       Serial.flush();
       message = "";
     }
