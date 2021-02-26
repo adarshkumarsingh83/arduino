@@ -29,13 +29,13 @@ connect the gnd from arduino uno to the bredboard common gnd line
 ## To test the ARduino from serial monitor 
 
 * {"type":76,"pin":5,"state":1}  
-* {"type":76,"pin":5,"state":1,"opStatus":"ON"}
+	* {"type":76,"pin":5,"state":1,"opStatus":"ON"}
 
 * {"type":76,"pin":5,"state":0}
-* {"type":76,"pin":5,"state":0,"opStatus":"OFF"}
+	* {"type":76,"pin":5,"state":0,"opStatus":"OFF"}
 
 * {"type":76,"pin":4,"state":1}
-* {"type":76,"pin":4,"state":1,"opStatus":"ON"}
+	* {"type":76,"pin":4,"state":1,"opStatus":"ON"}
 
 * {"type":76,"pin":4,"state":0}
-* {"type":76,"pin":4,"state":0,"opStatus":"OFF"}
+	* {"type":76,"pin":4,"state":0,"opStatus":"OFF"}
