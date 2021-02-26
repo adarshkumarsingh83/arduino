@@ -1,11 +1,11 @@
 # ESP8266 Internal Communication With Arduino Uno using ArduinoJson Lib for communication 
 
 ---- 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduino-serial-json-communication/image/ESP8266-pin%20digram.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduino-serial-json-communication/image/ESP8266-pin-digram.png)
 
 ## Connection
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduino-serial-json-communication/image/connections.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/esp8266-arduino-serial-json-communication/image/connection.JPG)
 
 
 ```connect the +3.3v and gnd/ -ve to the esp8266 3.3v and gnd pin 
