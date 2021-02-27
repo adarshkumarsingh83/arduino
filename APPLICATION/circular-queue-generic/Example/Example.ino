@@ -1,4 +1,4 @@
-#include "CircularQueue.h"
+#include "CircularQueue.cpp"
 
 const CircularQueue<int> circularQueueInt = CircularQueue<int>(5, "int-queue");
 const CircularQueue<String> circularQueueString = CircularQueue<String>(5, "string-queue");
