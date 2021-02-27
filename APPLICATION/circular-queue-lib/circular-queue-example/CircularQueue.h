@@ -51,7 +51,7 @@ boolean CircularQueue<T>::push(const T &value) {
 template <class T>
 inline T CircularQueue<T>::pop() {
   int pos = (_startIndex + 1) % _queueSize;
-  if (_data[pos] != T() ) {
+  if (_data[pos] != T() && _itemCount != 0 ) {
     T value = _data[pos];
     _data[pos] = T();
     _startIndex = pos;
