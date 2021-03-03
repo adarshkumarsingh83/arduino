@@ -9,10 +9,9 @@
 #include "Pca9685.h"
 
 
-void Pca9685::initPca9685Board() {
-  Serial.begin(9600);
+void Pca9685::initPca9685() {
   //_pwm.begin();
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < _totalPins; i++) {
     _pca9685PinList[i]._openState = 1000;
     _pca9685PinList[i]._closeState = 2000;
     _pca9685PinList[i]._isOpen = false;
@@ -34,7 +33,7 @@ bool Pca9685::closeSwitchPca9685Pin(int pinNo) {
 }
 
 void Pca9685::resetPca9685Board() {
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < _totalPins; i++) {
     Pca9685Pin pca9685Pin = _pca9685PinList[i];
     pca9685Pin._isOpen = false;
   }
@@ -42,7 +41,7 @@ void Pca9685::resetPca9685Board() {
 }
 
 void Pca9685::refreshPca9685Board() {
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < _totalPins; i++) {
     Pca9685Pin pca9685Pin = _pca9685PinList[i];
     if (pca9685Pin._isOpen) {
       //_pwm.setPWM(pinNo, 0, pca9685Pin._openState );
@@ -50,6 +49,7 @@ void Pca9685::refreshPca9685Board() {
       //_pwm.setPWM(pinNo, 0, pca9685Pin._closeState );
     }
   }
+  //displayPinState(pca9685Pin);
 }
 
 void Pca9685::refreshPin(int pinNo, Pca9685Pin pca9685Pin) {
@@ -59,7 +59,7 @@ void Pca9685::refreshPin(int pinNo, Pca9685Pin pca9685Pin) {
   } else {
     //_pwm.setPWM(pinNo, 0, pca9685Pin._closeState );
   }
-  displayPinState(pca9685Pin);
+  //displayPinState(pca9685Pin);
 }
 
 void Pca9685::displayPinState(Pca9685Pin pin) {
@@ -74,15 +74,21 @@ void Pca9685::displayPinState(Pca9685Pin pin) {
 }
 
 void Pca9685::displayPca9685PinState() {
-  for (int i = 0; i < 16; i++) {
+  Serial.print("Board No ");
+  Serial.print(_boardsAddress);
+  Serial.print(" total pins ");
+  Serial.println(_totalPins);
+  for (int i = 0; i < _totalPins; i++) {
     Pca9685Pin pin = _pca9685PinList[i];
     Serial.println();
+    Serial.print(" Pin ");
+    Serial.print(i);
     Serial.print(" openState ");
-    Serial.println(pin._openState);
+    Serial.print(pin._openState);
     Serial.print(" closeState ");
-    Serial.println(pin._closeState);
+    Serial.print(pin._closeState);
     Serial.print(" isOpen ");
-    Serial.println(pin._isOpen);
+    Serial.print(pin._isOpen);
     Serial.println();
   }
 }

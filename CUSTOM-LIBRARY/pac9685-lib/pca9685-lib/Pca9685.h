@@ -8,7 +8,7 @@
 #define Pca9685_h
 
 #include <Arduino.h>
-#include "Adafruit_PWMServoDriver.h"
+//#include "Adafruit_PWMServoDriver.h"
 
 class Pca9685 {
 
@@ -20,41 +20,42 @@ class Pca9685 {
     } Pca9685Pin;
 
     int _defaultState;
-    int _totalSwtiches;
+    int _totalPins;
     int _boardsAddress;
+
     Pca9685Pin * _pca9685PinList;
     //Adafruit_PWMServoDriver _pwm;
 
-    void initPca9685Board();
+    void initPca9685();
     void refreshPin(int pinNo, Pca9685Pin pca9685Pin);
 
   public:
 
     Pca9685(int boardsAddress) {
       _boardsAddress = boardsAddress;
-      _totalSwtiches = 16;
-      _pca9685PinList = new Pca9685Pin[boardsAddress];
+      _totalPins = 16;
+      _pca9685PinList = new Pca9685Pin[_totalPins];
       // _pwm = Adafruit_PWMServoDriver(boardsAddress);
       // _pwm.setPWMFreq(60);
-      initPca9685Board();
+      initPca9685();
     }
 
-    Pca9685(int boardsAddress, int frequency) {
+    Pca9685(int boardsAddress, int totalPins) {
       _boardsAddress = boardsAddress;
-      _totalSwtiches = 16;
-      _pca9685PinList = new Pca9685Pin[boardsAddress];
+      _totalPins = totalPins;
+      _pca9685PinList = new Pca9685Pin[_totalPins];
       // _pwm = Adafruit_PWMServoDriver(boardsAddress);
-      // _pwm.setPWMFreq(frequency);
-      initPca9685Board();
+      // _pwm.setPWMFreq(60);
+      initPca9685();
     }
 
-    Pca9685(int boardsAddress, int totalSwtiches, int frequency) {
+    Pca9685(int boardsAddress, int totalPins, int frequency) {
       _boardsAddress = boardsAddress;
-      _totalSwtiches = totalSwtiches;
-      _pca9685PinList = new Pca9685Pin[boardsAddress];
+      _totalPins = totalPins;
+      _pca9685PinList = new Pca9685Pin[_totalPins];
       // _pwm = Adafruit_PWMServoDriver(boardsAddress);
       // _pwm.setPWMFreq(frequency);
-      initPca9685Board();
+      initPca9685();
     }
 
     bool throwSwitchPca9685Pin(int pinNo);
