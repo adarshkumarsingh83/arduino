@@ -37,7 +37,7 @@ class Pca9685Board {
       _totalPca9685Boards = totalPca9685Boards;
       _pca9685Boards = new Pca9685*[_totalPca9685Boards];
       for (int i = 0; i < _totalPca9685Boards; i++) {
-        _pca9685Boards[i] = new Pca9685(_boardAddress[i], 16, 60);
+        _pca9685Boards[i] = new Pca9685(_boardAddress[i]);
       }
       initPca9685Boards();
     }

@@ -11,6 +11,9 @@
 
 void Pca9685::initPca9685() {
   //_pwm.begin();
+  if (_totalPins == -1) {
+    _totalPins = 16;
+  }
   for (int i = 0; i < _totalPins; i++) {
     _pca9685PinList[i]._openState = 1000;
     _pca9685PinList[i]._closeState = 2000;
