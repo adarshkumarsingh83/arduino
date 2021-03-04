@@ -2,6 +2,11 @@
 ## [offical website](https://www.arduino.cc)
 
 ---
+## To Open Two arduino sperate ide on mac 
+* $ open -n -a Arduino
+* -n = open new instance even when one is already running
+* -a xxx = open application xxx
+
 
 ## To Open Multiple terminal on mac 
 ## screen cmd for mac  
