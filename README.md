@@ -3,6 +3,13 @@
 
 ---
 
+## To Open Multiple terminal on mac 
+## screen cmd for mac  
+* $ screen </dev/cu/usbmodemxxx> boadrate
+* $ screen /dev/cu.usbmodem14101 9600
+
+---
+
 ## [Download](https://www.arduino.cc/en/software)
 
 - extract the zip and copy in application dir in mac 
