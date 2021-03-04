@@ -4,11 +4,10 @@
 
 ## connectionss 
 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-arduino-uno-to-arduino-master-slave/image/connections.JPG)
 
-![img]()
 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-arduino-uno-to-arduino-master-slave/image/spi-arduino-uno-connections.jpg)
 
 ```
 connect pin 13 of 1st uno to the pin 13 of 2nd uno 
@@ -33,3 +32,11 @@ connect the other short leg of the led ot the common gnd
 NOTE:: if single breadboard then both uno gnd to the same coommon gnd line 
 other wise connect the gnd from 1st uno to the gnd of the 2nd uno direct for common gnd line 
 ```
+
+
+### To Open Two arduino sperate ide on mac
+* $ open -n -a Arduino
+	* -n = open new instance even when one is already running
+	* -a xxx = open application xxx
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-arduino-uno-to-arduino-master-slave/image/serial-monitors.png)
