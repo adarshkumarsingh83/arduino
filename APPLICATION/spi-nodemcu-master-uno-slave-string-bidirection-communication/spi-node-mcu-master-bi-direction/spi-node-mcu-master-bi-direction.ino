@@ -21,6 +21,7 @@
 */
 
 #include<SPI.h>
+#define LED_PIN 5
 
 const String MSG = "HI_ADARSH_KUMAR:";
 const int dataSize = MSG.length();
@@ -29,7 +30,8 @@ char dataBuffer[20];
 volatile byte indexVar = -1;
 
 void setup (void) {
-  Serial.begin(115200);                   //Starts Serial Communication at Baud Rate 115200
+  Serial.begin(115200);    
+  pinMode(LED_PIN, OUTPUT); //Starts Serial Communication at Baud Rate 115200
   SPI.begin();                            //Begins the SPI commnuication
   SPI.setClockDivider(SPI_CLOCK_DIV8);    //Sets clock for SPI communication at 8 (16/8=2Mhz)
   digitalWrite(SS, HIGH);                 // Setting SlaveSelect as HIGH (So master doesnt connnect with slave)
@@ -50,7 +52,9 @@ void loop(void) {
   } else if (indexVar != -1 && indexVar < dataSize) {
     sendData(indexVar);
     indexVar += 1;
+    digitalWrite(LED_PIN, HIGH);  
   } else {
+    digitalWrite(LED_PIN, LOW);  
     indexVar = 0;
     Serial.println(dataBuffer);
     for (int i = 0; i < 20 ; i++) {

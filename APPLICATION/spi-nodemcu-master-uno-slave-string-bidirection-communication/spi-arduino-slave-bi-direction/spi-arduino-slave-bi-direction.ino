@@ -21,6 +21,7 @@
 */
 
 #include<SPI.h>
+#define LED_PIN 7
 
 const String MSG = " HI_RADHA_SINGH:";
 const int dataSize = MSG.length();
@@ -31,6 +32,7 @@ bool dataToReceived = false;
 
 void setup() {
   Serial.begin(115200);
+  pinMode(LED_PIN, OUTPUT);
   pinMode(MISO, OUTPUT);                  //Sets MISO as OUTPUT (Have to Send data to Master IN
   SPCR |= _BV(SPE);                       //Turn on SPI in Slave Mode
   dataToReceived = false;
@@ -55,8 +57,10 @@ void loop() {
       }
     }
   } else if (index != -1 && index < dataSize) {
+    digitalWrite(LED_PIN, HIGH);   
     dataRecieved();
   } else {
+    digitalWrite(LED_PIN, LOW);   
     index = 0;
     Serial.println(dataBuffer);
     for (int i = 0; i < 20 ; i++) {
