@@ -4,10 +4,10 @@
 
 ## connectionss 
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-arduino-uno-to-arduino-master-slave/image/connections.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-slave-string-bidirection-communication/image/connections.JPG)
 
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-arduino-uno-to-arduino-master-slave/image/spi-arduino-uno-connections.jpg)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-slave-string-bidirection-communication/image/spi-arduino-uno-connections.jpg)
 
 ```
 connect pin 13 of 1st uno to the pin 13 of 2nd uno 
@@ -39,4 +39,4 @@ other wise connect the gnd from 1st uno to the gnd of the 2nd uno direct for com
 	* -n = open new instance even when one is already running
 	* -a xxx = open application xxx
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-arduino-uno-to-arduino-master-slave/image/serial-monitors.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-slave-string-bidirection-communication/image/serial-monitors.png)
