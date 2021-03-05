@@ -6,8 +6,9 @@
 
 ![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-nodemcu-master-uno-slave-string-bidirection-communication/image/connections.JPG)
 
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-nodemcu-master-uno-slave-string-bidirection-communication/image/ESP8266-pin-digram.png)
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-nodemcu-master-uno-slave-string-bidirection-communication/image/spi-arduino-uno-connections.jpg)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-nodemcu-master-uno-slave-string-bidirection-communication/image/spi-nodemcu-arduino-uno-connections.png)
 
 ```
 connect pin 13 of  uno to the pin D5 of Node mcu
