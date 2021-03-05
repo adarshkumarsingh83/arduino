@@ -4,11 +4,11 @@
 
 ## connectionss 
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-byte-bidirection-communication/image/connections.JPG)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-slave-byte-bidirection-communication/image/connections.JPG)
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-byte-bidirection-communication/image/ESP8266-pin-digram.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-slave-byte-bidirection-communication/image/ESP8266-pin-digram.png)
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-byte-bidirection-communication/image/spi-nodemcu-arduino-uno-connections.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-slave-byte-bidirection-communication/image/spi-nodemcu-arduino-uno-connections.png)
 
 ```
 connect pin 13 of  uno to the pin D5 of Node mcu
@@ -36,4 +36,4 @@ then connect the short leg of the led to the breadboard gnd line
 	* -n = open new instance even when one is already running
 	* -a xxx = open application xxx
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-byte-bidirection-communication/image/serial-monitors.png)
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/spi-uno-master-nodemcu-slave-byte-bidirection-communication/image/serial-monitors.png)
