@@ -8,26 +8,50 @@
 #include <Wire.h>
 
 
-void Pcf8574::initPcf8574Boards() {
-  Serial.begin(9600);
+void Pcf8574::initPcf8574() {
+  _boardPinsState = new int[8];
   for (int i = 0; i < 8; i++) {
     _boardPinsState[i] = _OFF;
   }
-  Pcf8574::boardRefresh(0);
+  boardRefresh(0);
 }
 
+void Pcf8574::setBoardAddress(int boardsAddress) {
+  this->_boardsAddress = boardsAddress;
+}
 
-bool Pcf8574::switchOn(int pinNo) {
+int Pcf8574::getBoardAddress() {
+  return this->_boardsAddress;
+}
+
+bool Pcf8574::switchPinOn(int pinNo) {
   _boardPinsState[pinNo] = _ON;
-  Pcf8574::boardRefresh(0);
+  boardRefresh(0);
+  return true;
 }
 
-bool Pcf8574::switchOff(int pinNo) {
+bool Pcf8574::switchPinOff(int pinNo) {
   _boardPinsState[pinNo] = _OFF;
-  Pcf8574::boardRefresh(0);
+  boardRefresh(0);
+  return true;
 }
 
-void Pcf8574::displayPinState() {
+bool Pcf8574::resetPcf8574() {
+  for (int i = 0; i < 8; i++) {
+    _boardPinsState[i] = _OFF;
+  }
+  boardRefresh(0);
+  return true;
+}
+
+bool Pcf8574::refreshPcf8574() {
+  boardRefresh(0);
+  return true;
+}
+
+void Pcf8574::displayPcf8574PinState() {
+  Serial.print("Board address => ");
+  Serial.println( _boardsAddress );
   Serial.println();
   for (int j = 7; j >= 0; j--) {
     Serial.print(_boardPinsState[j]);
@@ -74,4 +98,5 @@ void Pcf8574::boardRefresh(int sum) {
   // Wire.beginTransmission(_boardsAddress);
   // Wire.write(sum);
   // Wire.endTransmission();
+  sum = 0;
 }

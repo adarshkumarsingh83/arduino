@@ -12,22 +12,24 @@ class Pcf8574 {
     int  _boardsAddress;
     int *_boardPinsState;
 
-    void initPcf8574Boards();
+    void initPcf8574();
     void boardRefresh(int sum);
 
   public:
     const static bool _OFF = true;
     const static bool _ON = false;
 
-    Pcf8574(int boardsAddress) {
-      _boardsAddress = boardsAddress;
-      _boardPinsState = new int[8];
-      initPcf8574Boards();
+    Pcf8574() {
+      initPcf8574();
     }
 
-    bool switchOn(int pinNo);
-    bool switchOff(int pinNo);
-    void displayPinState();
+    void setBoardAddress(int boardsAddress);
+    int getBoardAddress();
+    bool switchPinOn(int pinNo);
+    bool switchPinOff(int pinNo);
+    bool resetPcf8574();
+    bool refreshPcf8574();
+    void displayPcf8574PinState();
 
     ~Pcf8574() {
       delete[] _boardPinsState;
