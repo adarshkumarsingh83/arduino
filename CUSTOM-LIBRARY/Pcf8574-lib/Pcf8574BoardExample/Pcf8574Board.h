@@ -11,6 +11,7 @@
 class Pcf8574Board {
 
   private:
+    int _boardAddress[8] = {0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27};
 
     typedef struct BoardPin {
       int boardNo;
@@ -25,12 +26,10 @@ class Pcf8574Board {
     Pcf8574Board::BoardPinData findBoardPin(int no);
     Pcf8574 getPcf8574Object(int i);
 
-
   public:
 
-     Pcf8574Board(Pcf8574 * pcf8574Boards, int totalPcf8574Boards) {
-      _pcf8574Boards = pcf8574Boards;
-      _totalPcf8574Boards = totalPcf8574Boards;
+    Pcf8574Board(int totalPcf8574Boards) : _totalPcf8574Boards(totalPcf8574Boards) {
+      initPcf8574Boards();
     }
 
     bool switchOn(int pinNo);
@@ -40,6 +39,9 @@ class Pcf8574Board {
     void displayPinState();
 
     ~Pcf8574Board() {
+      for (int i = 0; i < _totalPcf8574Boards; i++) {
+        delete &_pcf8574Boards[i];
+      }
       delete [] _pcf8574Boards;
     }
 };

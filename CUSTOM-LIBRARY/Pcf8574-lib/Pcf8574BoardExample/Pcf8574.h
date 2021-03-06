@@ -19,12 +19,12 @@ class Pcf8574 {
     const static bool _OFF = true;
     const static bool _ON = false;
 
-    Pcf8574(int boardsAddress) {            
-      _boardsAddress = boardsAddress;
-      _boardPinsState = new int[8];
+    Pcf8574() {
       initPcf8574();
     }
 
+    void setBoardAddress(int boardsAddress);
+    int getBoardAddress();
     bool switchPinOn(int pinNo);
     bool switchPinOff(int pinNo);
     bool resetPcf8574();

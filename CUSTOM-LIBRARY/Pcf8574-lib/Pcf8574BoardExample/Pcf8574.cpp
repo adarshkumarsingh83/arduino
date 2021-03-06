@@ -9,13 +9,20 @@
 
 
 void Pcf8574::initPcf8574() {
-  Serial.begin(9600);
+  _boardPinsState = new int[8];
   for (int i = 0; i < 8; i++) {
     _boardPinsState[i] = _OFF;
   }
   boardRefresh(0);
 }
 
+void Pcf8574::setBoardAddress(int boardsAddress) {
+  this->_boardsAddress = boardsAddress;
+}
+
+int Pcf8574::getBoardAddress() {
+  return this->_boardsAddress;
+}
 
 bool Pcf8574::switchPinOn(int pinNo) {
   _boardPinsState[pinNo] = _ON;

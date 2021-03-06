@@ -7,6 +7,14 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+
+void Pcf8574Board::initPcf8574Boards() {
+  _pcf8574Boards = new Pcf8574[_totalPcf8574Boards];
+  for (int i = 0; i < _totalPcf8574Boards; i++) {
+    _pcf8574Boards[i].setBoardAddress(_boardAddress[i]);
+  }
+}
+
 Pcf8574Board::BoardPinData Pcf8574Board::findBoardPin(int pinNo) {
   Pcf8574Board::BoardPinData boardPinData;
   int board = (pinNo / 8);
@@ -58,6 +66,13 @@ void Pcf8574Board::refreshBoard(int boardNo) {
 }
 
 void Pcf8574Board::displayPinState() {
+  Serial.print("Total Boards ");
+  Serial.println(_totalPcf8574Boards);
+  for (int i = 0; i < _totalPcf8574Boards; i++) {
+    Serial.print("Address ");
+    Serial.println(_pcf8574Boards[i].getBoardAddress());
+  }
+
   for (int i = 0; i < _totalPcf8574Boards; i++) {
     _pcf8574Boards[i].displayPcf8574PinState();
     Serial.println();
