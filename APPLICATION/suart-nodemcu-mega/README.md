@@ -4,7 +4,10 @@
 
 # connections 
 
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/suart-nodemcu-mega/image/espMega-1x.png)
+
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/suart-nodemcu-mega/image/connections.JPG)
+
 ```
 # Pin in nodemcu 
  D2 = SRX,
@@ -26,6 +29,4 @@ connect the gnd from nodemcu to the common gnd of the bredbaord then connect the
 
 ```
 
-![img]()
-
-![img]()
+![img](https://github.com/adarshkumarsingh83/arduino/blob/master/APPLICATION/suart-nodemcu-mega/image/serial-monitor.png)
