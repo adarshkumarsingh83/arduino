@@ -16,6 +16,11 @@ void Pca9685Board::initPca9685Boards() {
   }
 }
 
+void Pca9685Board::setSwitchRange(int pinNo, int openRange, int closeRange) {
+  Pca9685Board::BoardPin boardSlot = findBoardPin(pinNo);
+  _pca9685Boards[boardSlot.boardNo].setSwitchOpenCloseRange(boardSlot.boardPin, openRange, closeRange);
+}
+
 Pca9685Board::BoardPin Pca9685Board::findBoardPin(int pinNo) {
   Pca9685Board::BoardPin boardSlot;
   int board = (pinNo / 16);

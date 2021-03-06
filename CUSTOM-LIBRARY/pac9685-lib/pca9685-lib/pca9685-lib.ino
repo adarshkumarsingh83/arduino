@@ -11,6 +11,9 @@ void setup() {
   pca9685Board = &Pca9685Board(NO_OF_BOARDS);
   //pca9685Board = &Pca9685Board(NO_OF_BOARDS,60);
   MAX_PINS = NO_OF_BOARDS * 16;
+  for (int i = 0; i < MAX_PINS; i++) {
+    pca9685Board->setSwitchRange(i, 100, 400);
+  }
 }
 
 void loop() {

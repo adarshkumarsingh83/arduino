@@ -47,6 +47,7 @@ class Pca9685Board {
     bool closeSwitch(int pinNo);
     void restBoard(int boardNo);
     void refreshBoard(int boardNo);
+    void setSwitchRange(int pinNo,int openRange,int closeRange);
     void displayPinState();
 
     ~Pca9685Board() {

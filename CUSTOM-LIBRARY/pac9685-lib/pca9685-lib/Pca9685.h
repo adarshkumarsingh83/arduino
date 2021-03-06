@@ -39,6 +39,7 @@ class Pca9685 {
     void setBoardAddress(int boardsAddress);
     int getBoardAddress();
     void setPwmFrequency(int pwmFrequency);
+    bool setSwitchOpenCloseRange(int pinNo, int openRange, int closeRange);
     bool throwSwitchPca9685Pin(int pinNo);
     bool closeSwitchPca9685Pin(int pinNo);
     void refreshPca9685Board();

@@ -31,6 +31,12 @@ void Pca9685::setPwmFrequency(int pwmFrequency) {
   this->_pwmFrequency = pwmFrequency;
 }
 
+
+bool Pca9685::setSwitchOpenCloseRange(int pinNo, int openRange,int closeRange) {
+  _pca9685PinList[pinNo]._openState = openRange;
+  _pca9685PinList[pinNo]._closeState = closeRange;
+}
+
 void Pca9685::setBoardAddress(int boardsAddress) {
   this->_boardsAddress = boardsAddress;
 }
