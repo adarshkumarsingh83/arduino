@@ -7,8 +7,11 @@
 
 #include "Pca9685Board.h"
 
-
 void Pca9685Board::initPca9685Boards() {
+  _pca9685Boards = new Pca9685[_totalPca9685Boards];
+  for (int i = 0; i < _totalPca9685Boards; i++) {
+    _pca9685Boards[i].setBoardAddress(_boardAddress[i]);
+  }
 }
 
 
@@ -30,26 +33,32 @@ Pca9685Board::BoardPin Pca9685Board::findBoardPin(int pinNo) {
 
 bool Pca9685Board::throwSwitch(int pinNo) {
   Pca9685Board::BoardPin boardSlot = findBoardPin(pinNo);
-  _pca9685Boards[boardSlot.boardNo]->throwSwitchPca9685Pin(boardSlot.boardPin);
+  _pca9685Boards[boardSlot.boardNo].throwSwitchPca9685Pin(boardSlot.boardPin);
 
 }
 bool Pca9685Board::closeSwitch(int pinNo) {
   Pca9685Board::BoardPin boardSlot = findBoardPin(pinNo);
-  _pca9685Boards[boardSlot.boardNo]->closeSwitchPca9685Pin(boardSlot.boardPin);
+  _pca9685Boards[boardSlot.boardNo].closeSwitchPca9685Pin(boardSlot.boardPin);
   return true;
 }
 
 void Pca9685Board::restBoard(int boardNo) {
-  _pca9685Boards[boardNo]->resetPca9685Board();
+  _pca9685Boards[boardNo].resetPca9685Board();
 }
 
 void Pca9685Board::refreshBoard(int boardNo) {
-  _pca9685Boards[boardNo]->refreshPca9685Board();
+  _pca9685Boards[boardNo].refreshPca9685Board();
 }
 
 void Pca9685Board::displayPinState() {
+  Serial.print("Total Boards ");
+  Serial.println(_totalPca9685Boards);
   for (int i = 0; i < _totalPca9685Boards; i++) {
-    _pca9685Boards[i]->displayPca9685PinState();
+    Serial.print("Address ");
+    Serial.println(_pca9685Boards[i].getBoardAddress());
+  }
+  for (int i = 0; i < _totalPca9685Boards; i++) {
+    _pca9685Boards[i].displayPca9685PinState();
     Serial.println("-");
   }
 }

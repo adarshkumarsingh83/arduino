@@ -11,14 +11,24 @@
 
 void Pca9685::initPca9685() {
   //_pwm.begin();
+
   if (_totalPins == -1) {
     _totalPins = 16;
   }
+  _pca9685PinList = new Pca9685Pin[_totalPins];
   for (int i = 0; i < _totalPins; i++) {
     _pca9685PinList[i]._openState = 1000;
     _pca9685PinList[i]._closeState = 2000;
     _pca9685PinList[i]._isOpen = false;
   }
+}
+
+void Pca9685::setBoardAddress(int boardsAddress) {
+  this->_boardsAddress = boardsAddress;
+}
+
+int Pca9685::getBoardAddress() {
+  return this->_boardsAddress;
 }
 
 bool Pca9685::throwSwitchPca9685Pin(int pinNo) {
@@ -80,8 +90,8 @@ void Pca9685::displayPca9685PinState() {
   Serial.print("Board No ");
   Serial.print(_boardsAddress);
   Serial.print(" total pins ");
-  Serial.println(_totalPins);
-  for (int i = 0; i < _totalPins; i++) {
+  Serial.println(this->_totalPins);
+  for (int i = 0; i < this->_totalPins; i++) {
     Pca9685Pin pin = _pca9685PinList[i];
     Serial.println();
     Serial.print(" Pin ");

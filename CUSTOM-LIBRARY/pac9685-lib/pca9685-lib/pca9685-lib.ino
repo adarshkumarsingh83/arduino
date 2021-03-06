@@ -9,13 +9,13 @@ int boardAddress[64] = {
   0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E, 0x7F
 };
 
-Pca9685 *pca9685;
+//Pca9685 *pca9685;
 Pca9685Board *pca9685Board;
 
 void setup() {
   Serial.begin(9600);
   //pca9685 = &Pca9685(0x40);
-  pca9685Board = &Pca9685Board(1);
+  pca9685Board = &Pca9685Board(8);
 }
 
 void loop() {

@@ -27,18 +27,14 @@ class Pca9685Board {
     } BoardPin;
 
     int _totalPca9685Boards;
-    Pca9685 ** _pca9685Boards;
+    Pca9685 * _pca9685Boards;
 
     void initPca9685Boards();
     BoardPin findBoardPin(int pinNo);
 
   public:
-    Pca9685Board(int totalPca9685Boards) {
-      _totalPca9685Boards = totalPca9685Boards;
-      _pca9685Boards = new Pca9685*[_totalPca9685Boards];
-      for (int i = 0; i < _totalPca9685Boards; i++) {
-        _pca9685Boards[i] = new Pca9685(_boardAddress[i]);
-      }
+  
+    Pca9685Board(int totalPca9685Boards) : _totalPca9685Boards(totalPca9685Boards) {
       initPca9685Boards();
     }
 
@@ -50,7 +46,7 @@ class Pca9685Board {
 
     ~Pca9685Board() {
       for (int i = 0; i < _totalPca9685Boards; i++) {
-        delete _pca9685Boards[i];
+        delete &_pca9685Boards[i];
       }
       delete[] _pca9685Boards;
     }

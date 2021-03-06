@@ -20,7 +20,7 @@ class Pca9685 {
     } Pca9685Pin;
 
     int _defaultState;
-    int _totalPins=16;
+    int _totalPins = -1;
     int _boardsAddress;
 
     Pca9685Pin * _pca9685PinList;
@@ -31,23 +31,14 @@ class Pca9685 {
 
   public:
 
-    Pca9685(int boardsAddress) {
-      _boardsAddress = boardsAddress;
-      _pca9685PinList = new Pca9685Pin[_totalPins];
+    Pca9685() {
       // _pwm = Adafruit_PWMServoDriver(boardsAddress);
       // _pwm.setPWMFreq(60);
       initPca9685();
     }
 
-    Pca9685(int boardsAddress, int totalPins) {
-      _boardsAddress = boardsAddress;
-      _totalPins = totalPins;
-      _pca9685PinList = new Pca9685Pin[_totalPins];
-      // _pwm = Adafruit_PWMServoDriver(boardsAddress);
-      // _pwm.setPWMFreq(60);
-      initPca9685();
-    }
-
+    void setBoardAddress(int boardsAddress);
+    int getBoardAddress();
     bool throwSwitchPca9685Pin(int pinNo);
     bool closeSwitchPca9685Pin(int pinNo);
     void refreshPca9685Board();
