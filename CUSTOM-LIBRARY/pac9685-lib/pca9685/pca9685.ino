@@ -8,18 +8,18 @@ int boardAddress[] = {
   0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E, 0x7F
 };
 
-Pca9685 pca9685 = Pca9685(0x40, 60);
+Pca9685 pca9685 = Pca9685();
 void setup() {
   Serial.begin(9600);
-
+  pca9685.initPca9685();
 }
 
 void loop() {
   delay(1000);
-  pca9685.displayPinState();
+  pca9685.displayPca9685PinState();
   for (int i = 0; i < 16; i++) {
-    pca9685.throwSwitch(i);
+    pca9685.throwSwitchPca9685Pin(i);
     delay(1000);
-    pca9685.closeSwitch(i);
+    pca9685.closeSwitchPca9685Pin(i);
   }
 }
