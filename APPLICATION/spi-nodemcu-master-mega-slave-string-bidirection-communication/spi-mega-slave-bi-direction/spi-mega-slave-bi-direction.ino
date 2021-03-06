@@ -12,7 +12,7 @@
   SS = 10
 
   PIN MAPPING
-  NODE MCU SLAVE     UNO MASTER
+  NODE MCU MASTER    UNO SLAVE
   D5                  13
   D6                  12
   D7                  11
