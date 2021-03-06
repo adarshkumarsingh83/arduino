@@ -1,4 +1,3 @@
-
 /*
    Adarsh Model Trains
    Developed by Adarsh kumar
@@ -22,19 +21,19 @@ void Pca9685::init() {
 }
 
 void Pca9685::initPca9685() {
-  //_pwm.begin();
-  //_pwm = Adafruit_PWMServoDriver(_boardsAddress);
-  //_pwm.setPWMFreq(_pwmFrequency);
+  _pwm.begin();
+  _pwm = Adafruit_PWMServoDriver(_boardsAddress);
+  _pwm.setPWMFreq(_pwmFrequency);
 }
 
 void Pca9685::setPwmFrequency(int pwmFrequency) {
   this->_pwmFrequency = pwmFrequency;
 }
 
-
-bool Pca9685::setSwitchOpenCloseRange(int pinNo, int openRange,int closeRange) {
+bool Pca9685::setSwitchOpenCloseRange(int pinNo, int openRange, int closeRange) {
   _pca9685PinList[pinNo]._openState = openRange;
   _pca9685PinList[pinNo]._closeState = closeRange;
+  return true;
 }
 
 void Pca9685::setBoardAddress(int boardsAddress) {
@@ -61,8 +60,7 @@ bool Pca9685::closeSwitchPca9685Pin(int pinNo) {
 
 void Pca9685::resetPca9685Board() {
   for (int i = 0; i < _totalPins; i++) {
-    Pca9685Pin pca9685Pin = _pca9685PinList[i];
-    pca9685Pin._isOpen = false;
+    _pca9685PinList[i]._isOpen = false;
   }
   refreshPca9685Board();
 }
@@ -71,28 +69,28 @@ void Pca9685::refreshPca9685Board() {
   for (int i = 0; i < _totalPins; i++) {
     Pca9685Pin pca9685Pin = _pca9685PinList[i];
     if (pca9685Pin._isOpen) {
-      // _pwm.setPWM(i, 0, pca9685Pin._openState );
+      _pwm.writeMicroseconds(i, pca9685Pin._openState );
     } else {
-      // _pwm.setPWM(i, 0, pca9685Pin._closeState );
+      _pwm.writeMicroseconds(i, pca9685Pin._closeState );
     }
   }
 }
 
 void Pca9685::refreshPin(int pinNo, Pca9685Pin pca9685Pin) {
-  //todo with adafruit lib implementation
   if (pca9685Pin._isOpen) {
-    // _pwm.setPWM(pinNo, 0, pca9685Pin._openState );
+    _pwm.writeMicroseconds(pinNo, pca9685Pin._openState );
   } else {
-    // _pwm.setPWM(pinNo, 0, pca9685Pin._closeState );
+    _pwm.writeMicroseconds(pinNo, pca9685Pin._closeState );
   }
 }
 
-void Pca9685::displayPinState(Pca9685Pin pin) {
+void Pca9685::displayPinState(int pinNo) {
+  Pca9685Pin pin = _pca9685PinList[pinNo];
   Serial.println();
   Serial.print(" openState ");
-  Serial.println(pin._openState);
+  Serial.print(pin._openState);
   Serial.print(" closeState ");
-  Serial.println(pin._closeState);
+  Serial.print(pin._closeState);
   Serial.print(" isOpen ");
   Serial.println(pin._isOpen);
   Serial.println();

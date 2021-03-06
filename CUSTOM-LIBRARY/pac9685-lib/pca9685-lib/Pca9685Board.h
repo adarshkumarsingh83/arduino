@@ -25,9 +25,10 @@ class Pca9685Board {
       int boardPin;
       bool processed;
     } BoardPin;
-
-    int _pwmFrequency = 60;;
-    int _totalPca9685Boards;
+    
+    int _totalPca9685Boards = 0;
+    int _pwmFrequency = 60;
+    
     Pca9685 * _pca9685Boards;
 
     void initPca9685Boards();
@@ -47,7 +48,7 @@ class Pca9685Board {
     bool closeSwitch(int pinNo);
     void restBoard(int boardNo);
     void refreshBoard(int boardNo);
-    void setSwitchRange(int pinNo,int openRange,int closeRange);
+    void setSwitchRange(int pinNo, int openRange, int closeRange);
     void displayPinState();
 
     ~Pca9685Board() {

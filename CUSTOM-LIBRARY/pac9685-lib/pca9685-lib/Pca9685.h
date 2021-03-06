@@ -8,7 +8,7 @@
 #define Pca9685_h
 
 #include <Arduino.h>
-//#include "Adafruit_PWMServoDriver.h"
+#include "Adafruit_PWMServoDriver.h"
 
 class Pca9685 {
 
@@ -25,7 +25,7 @@ class Pca9685 {
     int _pwmFrequency;
 
     Pca9685Pin * _pca9685PinList;
-    // Adafruit_PWMServoDriver _pwm;
+    Adafruit_PWMServoDriver _pwm;
 
     void init();
     void refreshPin(int pinNo, Pca9685Pin pca9685Pin);
@@ -45,7 +45,7 @@ class Pca9685 {
     void refreshPca9685Board();
     void resetPca9685Board();
     void displayPca9685PinState();
-    void displayPinState(Pca9685Pin pin);
+    void displayPinState(int pinNo);
 
     ~Pca9685() {
       delete [] _pca9685PinList;
