@@ -11,9 +11,10 @@ void Pca9685Board::initPca9685Boards() {
   _pca9685Boards = new Pca9685[_totalPca9685Boards];
   for (int i = 0; i < _totalPca9685Boards; i++) {
     _pca9685Boards[i].setBoardAddress(_boardAddress[i]);
+    _pca9685Boards[i].setPwmFrequency(_pwmFrequency);
+    _pca9685Boards[i].initPca9685();
   }
 }
-
 
 Pca9685Board::BoardPin Pca9685Board::findBoardPin(int pinNo) {
   Pca9685Board::BoardPin boardSlot;

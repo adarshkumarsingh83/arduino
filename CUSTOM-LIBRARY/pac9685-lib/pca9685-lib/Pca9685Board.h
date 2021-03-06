@@ -26,6 +26,7 @@ class Pca9685Board {
       bool processed;
     } BoardPin;
 
+    int _pwmFrequency = 60;;
     int _totalPca9685Boards;
     Pca9685 * _pca9685Boards;
 
@@ -33,8 +34,12 @@ class Pca9685Board {
     BoardPin findBoardPin(int pinNo);
 
   public:
-  
+
     Pca9685Board(int totalPca9685Boards) : _totalPca9685Boards(totalPca9685Boards) {
+      initPca9685Boards();
+    }
+
+    Pca9685Board(int totalPca9685Boards, int pwmFrequency) : _totalPca9685Boards(totalPca9685Boards), _pwmFrequency(pwmFrequency) {
       initPca9685Boards();
     }
 

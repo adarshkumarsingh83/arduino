@@ -9,9 +9,7 @@
 #include "Pca9685.h"
 
 
-void Pca9685::initPca9685() {
-  //_pwm.begin();
-
+void Pca9685::init() {
   if (_totalPins == -1) {
     _totalPins = 16;
   }
@@ -21,6 +19,16 @@ void Pca9685::initPca9685() {
     _pca9685PinList[i]._closeState = 2000;
     _pca9685PinList[i]._isOpen = false;
   }
+}
+
+void Pca9685::initPca9685() {
+  //_pwm.begin();
+  //_pwm = Adafruit_PWMServoDriver(_boardsAddress);
+  //_pwm.setPWMFreq(_pwmFrequency);
+}
+
+void Pca9685::setPwmFrequency(int pwmFrequency) {
+  this->_pwmFrequency = pwmFrequency;
 }
 
 void Pca9685::setBoardAddress(int boardsAddress) {
@@ -57,22 +65,20 @@ void Pca9685::refreshPca9685Board() {
   for (int i = 0; i < _totalPins; i++) {
     Pca9685Pin pca9685Pin = _pca9685PinList[i];
     if (pca9685Pin._isOpen) {
-      //_pwm.setPWM(pinNo, 0, pca9685Pin._openState );
+      // _pwm.setPWM(i, 0, pca9685Pin._openState );
     } else {
-      //_pwm.setPWM(pinNo, 0, pca9685Pin._closeState );
+      // _pwm.setPWM(i, 0, pca9685Pin._closeState );
     }
   }
-  //displayPinState(pca9685Pin);
 }
 
 void Pca9685::refreshPin(int pinNo, Pca9685Pin pca9685Pin) {
   //todo with adafruit lib implementation
   if (pca9685Pin._isOpen) {
-    //_pwm.setPWM(pinNo, 0, pca9685Pin._openState );
+    // _pwm.setPWM(pinNo, 0, pca9685Pin._openState );
   } else {
-    //_pwm.setPWM(pinNo, 0, pca9685Pin._closeState );
+    // _pwm.setPWM(pinNo, 0, pca9685Pin._closeState );
   }
-  //displayPinState(pca9685Pin);
 }
 
 void Pca9685::displayPinState(Pca9685Pin pin) {

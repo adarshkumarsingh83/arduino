@@ -9,12 +9,13 @@ int MAX_PINS = 0;
 void setup() {
   Serial.begin(9600);
   pca9685Board = &Pca9685Board(NO_OF_BOARDS);
+  //pca9685Board = &Pca9685Board(NO_OF_BOARDS,60);
   MAX_PINS = NO_OF_BOARDS * 16;
 }
 
 void loop() {
   delay(1000);
-  
+
   int pinNo = random(0, MAX_PINS);
   Serial.print("MAX PIN ");
   Serial.println(MAX_PINS);

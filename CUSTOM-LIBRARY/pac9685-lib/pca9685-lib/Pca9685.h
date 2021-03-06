@@ -22,23 +22,23 @@ class Pca9685 {
     int _defaultState;
     int _totalPins = -1;
     int _boardsAddress;
+    int _pwmFrequency;
 
     Pca9685Pin * _pca9685PinList;
-    //Adafruit_PWMServoDriver _pwm;
+    // Adafruit_PWMServoDriver _pwm;
 
-    void initPca9685();
+    void init();
     void refreshPin(int pinNo, Pca9685Pin pca9685Pin);
 
   public:
 
     Pca9685() {
-      // _pwm = Adafruit_PWMServoDriver(boardsAddress);
-      // _pwm.setPWMFreq(60);
-      initPca9685();
+      init();
     }
-
+    void initPca9685();
     void setBoardAddress(int boardsAddress);
     int getBoardAddress();
+    void setPwmFrequency(int pwmFrequency);
     bool throwSwitchPca9685Pin(int pinNo);
     bool closeSwitchPca9685Pin(int pinNo);
     void refreshPca9685Board();
