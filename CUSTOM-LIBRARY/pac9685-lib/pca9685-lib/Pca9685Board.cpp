@@ -36,14 +36,12 @@ Pca9685Board::BoardPin Pca9685Board::findBoardPin(int pinNo) {
 bool Pca9685Board::throwSwitch(int pinNo) {
   Pca9685Board::BoardPin boardSlot = findBoardPin(pinNo);
   _pca9685Boards[boardSlot.boardNo].throwSwitchPca9685Pin(boardSlot.boardPin);
-  _pca9685Boards[boardSlot.boardNo].displayPinState(boardSlot.boardPin);
   return true;
 }
 
 bool Pca9685Board::closeSwitch(int pinNo) {
   Pca9685Board::BoardPin boardSlot = findBoardPin(pinNo);
   _pca9685Boards[boardSlot.boardNo].closeSwitchPca9685Pin(boardSlot.boardPin);
-   _pca9685Boards[boardSlot.boardNo].displayPinState(boardSlot.boardPin);
   return true;
 }
 

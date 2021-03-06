@@ -10,7 +10,6 @@
 
 
 void Pca9685::init() {
-  _debug = false;
   if (_totalPins == -1) {
     _totalPins = 16;
   }
@@ -56,13 +55,13 @@ bool Pca9685::closeSwitchPca9685Pin(int pinNo) {
   _pca9685PinList[pinNo]._isOpen = false;
   Pca9685Pin pin = _pca9685PinList[pinNo];
   refreshPin(pinNo, pin);
+  displayPinState(pinNo);
   return true;
 }
 
 void Pca9685::resetPca9685Board() {
   for (int i = 0; i < _totalPins; i++) {
-    Pca9685Pin pca9685Pin = _pca9685PinList[i];
-    pca9685Pin._isOpen = false;
+    _pca9685PinList[i]._isOpen = false;
   }
   refreshPca9685Board();
 }
@@ -87,29 +86,36 @@ void Pca9685::refreshPin(int pinNo, Pca9685Pin pca9685Pin) {
   }
 }
 
-void Pca9685::setDebug(bool debug) {
-  this->_debug = debug;
+void Pca9685::displayPinState(int pinNo) {
+  Pca9685Pin pin = _pca9685PinList[pinNo];
+  Serial.println();
+  Serial.print(" openState ");
+  Serial.print(pin._openState);
+  Serial.print(" closeState ");
+  Serial.print(pin._closeState);
+  Serial.print(" isOpen ");
+  Serial.println(pin._isOpen);
+  Serial.println();
 }
 
-void Pca9685::displayPca9685PinState() {
-  if (_debug) {
-    Serial.print("Board No ");
-    Serial.print(_boardsAddress);
-    Serial.print(" total pins ");
-    Serial.println(this->_totalPins);
 
-    for (int i = 0; i < this->_totalPins; i++) {
-      Pca9685Pin pin = _pca9685PinList[i];
-      Serial.println();
-      Serial.print(" Pin ");
-      Serial.print(i);
-      Serial.print(" openState ");
-      Serial.print(pin._openState);
-      Serial.print(" closeState ");
-      Serial.print(pin._closeState);
-      Serial.print(" isOpen ");
-      Serial.print(pin._isOpen);
-      Serial.println();
-    }
+void Pca9685::displayPca9685PinState() {
+  Serial.print("Board No ");
+  Serial.print(_boardsAddress);
+  Serial.print(" total pins ");
+  Serial.println(this->_totalPins);
+
+  for (int i = 0; i < this->_totalPins; i++) {
+    Pca9685Pin pin = _pca9685PinList[i];
+    Serial.println();
+    Serial.print(" Pin ");
+    Serial.print(i);
+    Serial.print(" openState ");
+    Serial.print(pin._openState);
+    Serial.print(" closeState ");
+    Serial.print(pin._closeState);
+    Serial.print(" isOpen ");
+    Serial.print(pin._isOpen);
+    Serial.println();
   }
 }

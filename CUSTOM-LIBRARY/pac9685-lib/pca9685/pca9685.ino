@@ -9,8 +9,6 @@ void setup() {
   pca9685.setBoardAddress(0x40);
   //setting board frequency
   pca9685.setPwmFrequency(50);
-  //set the debug will show the debug messages
-  pca9685.setDebug(false);
   //init the board
   pca9685.initPca9685();
   //setting up the range for open and close

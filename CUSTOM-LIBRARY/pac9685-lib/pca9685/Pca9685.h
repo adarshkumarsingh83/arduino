@@ -23,7 +23,6 @@ class Pca9685 {
     int _totalPins = -1;
     int _boardsAddress;
     int _pwmFrequency;
-    bool _debug;
 
     Pca9685Pin * _pca9685PinList;
     Adafruit_PWMServoDriver _pwm;
@@ -46,8 +45,7 @@ class Pca9685 {
     void refreshPca9685Board();
     void resetPca9685Board();
     void displayPca9685PinState();
-    void displayPinState(Pca9685Pin pin);
-    void setDebug(bool debug);
+     void displayPinState(int pinNo);
 
     ~Pca9685() {
       delete [] _pca9685PinList;

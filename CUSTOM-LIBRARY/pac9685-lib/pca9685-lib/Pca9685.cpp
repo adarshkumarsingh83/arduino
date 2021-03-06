@@ -48,6 +48,7 @@ bool Pca9685::throwSwitchPca9685Pin(int pinNo) {
   _pca9685PinList[pinNo]._isOpen = true;
   Pca9685Pin pin = _pca9685PinList[pinNo];
   refreshPin(pinNo, pin);
+  displayPinState(pinNo);
   return true;
 }
 
@@ -55,6 +56,7 @@ bool Pca9685::closeSwitchPca9685Pin(int pinNo) {
   _pca9685PinList[pinNo]._isOpen = false;
   Pca9685Pin pin = _pca9685PinList[pinNo];
   refreshPin(pinNo, pin);
+  displayPinState(pinNo);
   return true;
 }
 
