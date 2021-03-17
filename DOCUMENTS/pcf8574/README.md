@@ -11,9 +11,9 @@ which will provide additional 64 pins for io operations
 
 ## Address Configuation details 
 
-![img](/images/PCF8574-GPIO-Extender.png)
+![img](images/PCF8574-GPIO-Extender.png)
 
-![img](/images/pcf8574-address-pin.png)
+![img](images/pcf8574-address-pin.png)
 
 ```
 
