@@ -17,6 +17,8 @@ which will provide additional 64 pins for io operations
 
 ![img](images/PCF8574-GPIO-Extender.png)
 
+![img](images/pcf.png)
+
 ![img](images/pcf8574-address-pin.png)
 
 ```
