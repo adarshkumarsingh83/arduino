@@ -17,5 +17,5 @@ D1 pin from esp8266 to the SCL pin of the uno
 D2 pin from esp8266 to the SDA pin of the uno 
 
 ```
-![img](APPLICATION/i2c-esp8266-uno-communication/image/1.JPG)
+![img](/APPLICATION/i2c-esp8266-uno-communication/image/1.JPG)
 
