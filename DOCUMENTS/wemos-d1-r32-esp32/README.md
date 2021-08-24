@@ -1,6 +1,10 @@
 # WEMOS-D1-R32
 
-### INSTALL THE CH340 DRIVER FOR CCOMPUTER 
+### INSTALL THE CH340 DRIVER FOR COMPUTER 
+
+[mac drivers](drivers/mac-CH34x_Install_V1.5.pkg.zip)
+
+[windows drivers](drivers/windows-CH34x_Install_v3_4.zip)
 
 
 ### INSTALL THE BOARD MANGER JSON 
