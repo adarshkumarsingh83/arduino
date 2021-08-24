@@ -40,3 +40,13 @@ Select the latest version from drop down & install it.
 ```
 Now open the TOOLS –> BOARDS –> BOARDS MANAGER -> WIMOS D1 MINI ESP32
 ```
+
+![img](image/wemos-esp32.jpeg)
+
+![img](image/1.png)
+![img](image/2.png)
+![img](image/3.png)
+![img](image/4.png)
+![img](image/5.png)
+![img](image/6.png)
+![img](image/7.png)
