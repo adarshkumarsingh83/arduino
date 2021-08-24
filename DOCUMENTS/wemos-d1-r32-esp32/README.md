@@ -2,9 +2,9 @@
 
 ### INSTALL THE CH340 DRIVER FOR COMPUTER 
 
-[mac drivers](drivers/mac-CH34x_Install_V1.5.pkg.zip)
+[mac drivers](https://github.com/adarshkumarsingh83/arduino/raw/master/DOCUMENTS/wemos-d1-r32-esp32/drivers/mac-CH34x_Install_V1.5.pkg.zip)
 
-[windows drivers](drivers/windows-CH34x_Install_v3_4.zip)
+[windows drivers](https://github.com/adarshkumarsingh83/arduino/raw/master/DOCUMENTS/wemos-d1-r32-esp32/drivers/windows-CH34x_Install_v3_4.zip)
 
 
 ### INSTALL THE BOARD MANGER JSON 
