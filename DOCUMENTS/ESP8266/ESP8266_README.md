@@ -1,9 +1,9 @@
 # ESP8266 
 
 --- 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/DOCUMENTS/ESP8266/ESP8266-pin%20digram.png)
+![img](image/ESP8266-pin%20digram.png)
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/DOCUMENTS/ESP8266/esp8266-pin-digram.png)
+![img](image/esp8266-pin-digram.png)
 
 
 ## HELP URL 
@@ -40,7 +40,7 @@ then Test from the File -> Example -> ESP8266 -> Blink
 # for solving the errror on bigsur mac os 
 ### https://forum.arduino.cc/index.php?topic=702144.0
 
-![img](https://github.com/adarshkumarsingh83/arduino/blob/master/DOCUMENTS/ESP8266/esp3266-mac-bigsur-issue-solution.png)
+![img](image/esp3266-mac-bigsur-issue-solution.png)
 
 ```
 
