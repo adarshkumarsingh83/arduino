@@ -9,8 +9,8 @@
 
 
 // ESP8266 do not support 5G wifi connection
-#define WIFI_SSID  "adarsh-radha-att-5g"
-#define WIFI_PASSWROD  "Scorpio@0505"
+#define WIFI_SSID  "adarsh-model-trains"
+#define WIFI_PASSWROD  "adarsh-model-trains"
 
 // IP OF THE SERVER MACHINE WHERE SPRING TRANSFORMER IS RUNNING
 #define SERVER_URL  "http://192.168.0.188:8080/espark/adarsh"
